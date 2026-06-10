@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Imóveis à venda e para alugar | Leopoldina Imóveis</title>
+  <meta name="description" content="Busque imóveis na Pompeia, Lapa, Alto da Lapa e Vila Leopoldina. Filtre por tipo, bairro, número de quartos e preço.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="imoveis">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><b>Leopoldina</b><span>Imóveis</span></a>
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="imoveis.html" class="active">Imóveis</a>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn--primary" href="contato.html">Anuncie seu imóvel</a>
+        <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Início</a> › Imóveis</div>
+      <h1>Encontre seu próximo imóvel</h1>
+      <p>Use os filtros para refinar a busca pelos nossos bairros.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="filters-bar">
+      <div class="filters-grid">
+        <div class="field">
+          <label>Finalidade</label>
+          <select name="f-finalidade">
+            <option value="">Comprar ou alugar</option>
+            <option value="venda">Comprar</option>
+            <option value="locacao">Alugar</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tipo</label>
+          <select name="f-tipo">
+            <option value="">Todos</option>
+            <option>Apartamento</option>
+            <option>Casa</option>
+            <option>Comercial</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Bairro</label>
+          <select name="f-bairro">
+            <option value="">Todos</option>
+            <option>Pompeia</option>
+            <option>Lapa</option>
+            <option>Alto da Lapa</option>
+            <option>Vila Leopoldina</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Quartos</label>
+          <select name="f-quartos">
+            <option value="">Qualquer</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preço máximo</label>
+          <select name="f-preco">
+            <option value="">Sem limite</option>
+            <option value="5000">Até R$ 5 mil (aluguel)</option>
+            <option value="10000">Até R$ 10 mil (aluguel)</option>
+            <option value="1000000">Até R$ 1 milhão</option>
+            <option value="2000000">Até R$ 2 milhões</option>
+            <option value="3500000">Até R$ 3,5 milhões</option>
+          </select>
+        </div>
+        <button class="btn btn--ghost" id="limpar" type="button">Limpar</button>
+      </div>
+    </div>
+
+    <div class="results-meta">
+      <div class="count" id="count"></div>
+      <div class="sort">
+        Ordenar por
+        <select name="f-ordem">
+          <option value="">Relevância</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="area">Maior área</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid-cards" id="lista" style="padding-bottom:80px"></div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="index.html"><b>Leopoldina</b><span>Imóveis</span></a>
+          <p>Imobiliária de bairro premium na zona oeste de São Paulo. Compra, venda, locação e administração.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Imóveis</h4>
+          <a href="imoveis.html?finalidade=venda">Comprar</a>
+          <a href="imoveis.html?finalidade=locacao">Alugar</a>
+          <a href="imoveis.html?tipo=Comercial">Comercial</a>
+          <a href="contato.html">Anuncie seu imóvel</a>
+        </div>
+        <div class="footer-col">
+          <h4>Bairros</h4>
+          <a href="imoveis.html?bairro=Pompeia">Pompeia</a>
+          <a href="imoveis.html?bairro=Lapa">Lapa</a>
+          <a href="imoveis.html?bairro=Alto da Lapa">Alto da Lapa</a>
+          <a href="imoveis.html?bairro=Vila Leopoldina">Vila Leopoldina</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul>
+            <li>Rua Clélia, Pompeia, São Paulo/SP</li>
+            <li>(11) 0000-0000</li>
+            <li>contato@leopoldinaimoveis.com.br</li>
+            <li>Seg a Sex das 9h às 18h · Sáb das 9h às 13h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Leopoldina Imóveis · CRECI 00000-J (fictício)</span>
+        <span>Site-demo criado por Felipe · MazyOS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

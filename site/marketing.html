@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Marketing e conteúdo | Leopoldina Imóveis</title>
+  <meta name="description" content="Gere post e legenda para redes sociais a partir de qualquer imóvel da carteira.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="marketing" data-nivel-req="3">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><b>Leopoldina</b><span>Imóveis</span></a>
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="imoveis.html">Imóveis</a>
+        <a href="quem-somos.html">Quem somos</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn--primary" href="contato.html">Anuncie seu imóvel</a>
+        <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Início</a> › Gestão › Marketing</div>
+      <span class="gx-etapa gx-etapa--3">Etapa 3 · Plataforma</span>
+      <h1>Marketing e conteúdo</h1>
+      <p>Escolha um imóvel e o sistema monta o post pronto para o Instagram: imagem, legenda e hashtags. Mantém a presença digital no ar sem depender de designer.</p>
+    </div>
+  </section>
+
+  <div class="container gx-wrap">
+    <div class="gx-cols gx-cols--13">
+      <div class="gx-panel">
+        <div class="gx-panel-head"><h2>Gerar post</h2></div>
+        <form class="form" id="mk-form">
+          <div><label>Imóvel</label><select id="mk-imovel"></select></div>
+          <div><label>Tom da legenda</label>
+            <select id="mk-tom">
+              <option value="vendedor">Direto e vendedor</option>
+              <option value="sofisticado">Sofisticado</option>
+              <option value="descontraido">Descontraído</option>
+            </select>
+          </div>
+          <button class="btn btn--brand btn--block" type="submit">Gerar post</button>
+          <p class="form-note">Demonstração: o texto é montado a partir dos dados do imóvel. Numa versão real, a IA gera variações e imagens.</p>
+        </form>
+      </div>
+
+      <div class="gx-panel">
+        <div class="gx-panel-head"><h2>Pré-visualização</h2></div>
+        <div id="mk-out"><p class="gx-empty">Escolha um imóvel e clique em "Gerar post".</p></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 Leopoldina Imóveis · CRECI 00000-J (fictício)</span>
+        <span>Site-demo criado por Felipe · MazyOS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/data-gestao.js"></script>
+  <script src="js/nivel.js"></script>
+  <script src="js/marketing.js"></script>
+</body>
+</html>

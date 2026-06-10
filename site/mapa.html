@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mapa de imóveis | Leopoldina Imóveis</title>
+  <meta name="description" content="Mapa interativo dos imóveis na zona oeste, com mapa de calor por preço.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="mapa" data-nivel-req="2">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><b>Leopoldina</b><span>Imóveis</span></a>
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="imoveis.html">Imóveis</a>
+        <a href="quem-somos.html">Quem somos</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn--primary" href="contato.html">Anuncie seu imóvel</a>
+        <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Início</a> › Gestão › Mapa</div>
+      <span class="gx-etapa">Etapa 2 · Gestão</span>
+      <h1>Mapa de imóveis</h1>
+      <p>O cliente vê onde fica cada imóvel e passa mais tempo no site. O mapa de calor mostra a concentração de valor por região, como nas grandes plataformas.</p>
+    </div>
+  </section>
+
+  <div class="container gx-wrap">
+    <div class="gx-mapbar">
+      <div class="gx-seg" id="f-finalidade">
+        <button type="button" class="gx-seg-b on" data-v="">Todos</button>
+        <button type="button" class="gx-seg-b" data-v="venda">Venda</button>
+        <button type="button" class="gx-seg-b" data-v="locacao">Locação</button>
+      </div>
+      <select id="f-bairro" class="gx-select">
+        <option value="">Todos os bairros</option>
+        <option>Pompeia</option>
+        <option>Lapa</option>
+        <option>Alto da Lapa</option>
+        <option>Vila Leopoldina</option>
+      </select>
+      <label class="gx-switch"><input type="checkbox" id="f-heat"> <span>Mapa de calor</span></label>
+    </div>
+
+    <div class="gx-maparea">
+      <div class="gx-map" id="map"></div>
+      <aside class="gx-mapinfo" id="mapinfo">
+        <div class="gx-mapinfo-empty">Toque em um ponto do mapa para ver o imóvel.</div>
+      </aside>
+    </div>
+
+    <p class="gx-note">Demonstração com um mapa estilizado da zona oeste. Na versão final, é um mapa real (Google/Mapbox) com os imóveis geolocalizados.</p>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 Leopoldina Imóveis · CRECI 00000-J (fictício)</span>
+        <span>Site-demo criado por Felipe · MazyOS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/data-gestao.js"></script>
+  <script src="js/nivel.js"></script>
+  <script src="js/mapa.js"></script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sua Imobiliária | Apresentação do projeto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F1EC;
+    --bg-alt:#FAFAF8;
+    --dark:#1A1613;
+    --ink:#1A1A1A;
+    --muted:#6B6B6B;
+    --line:#E3DFD7;
+    --card:#EAE6DF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;}
+
+  @page{size:210mm 297mm;margin:0;}
+
+  .page{
+    width:210mm;
+    height:297mm;
+    position:relative;
+    overflow:hidden;
+    background:var(--bg);
+    display:flex;
+    flex-direction:column;
+    break-after:page;
+  }
+  .page:last-child{break-after:auto;}
+  .pad{padding:24mm 22mm;flex:1;display:flex;flex-direction:column;}
+
+  h1,h2,h3{font-weight:800;letter-spacing:-0.02em;line-height:1.0;color:var(--ink);}
+  .eyebrow{
+    display:inline-block;
+    font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.18em;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:6px 14px;border-radius:9999px;
+    background:var(--bg-alt);
+    margin-bottom:18px;
+  }
+  p{color:var(--muted);font-size:14px;}
+  .lead{font-size:16px;color:#3a3a3a;}
+
+  /* ---------- CAPA ---------- */
+  .cover{background:var(--dark);color:#FAFAF8;}
+  .cover .pad{padding:26mm 22mm;justify-content:space-between;}
+  .cover .eyebrow{color:#cfc6ba;border-color:rgba(255,255,255,.18);background:transparent;}
+  .cover h1{color:#FAFAF8;font-size:52px;line-height:1.02;letter-spacing:-0.03em;}
+  .cover .sub{color:#bcb2a4;font-size:17px;max-width:84%;margin-top:22px;}
+  .logo-mark{display:inline-flex;}
+  .logo-txt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1;}
+  .logo-txt b{font-weight:600;font-size:26px;line-height:.9;letter-spacing:-0.015em;color:#FAFAF8;text-transform:none;}
+  .logo-txt span{font-weight:500;font-size:10px;letter-spacing:0.36em;text-transform:uppercase;color:#bcb2a4;margin-left:2px;}
+  .cover-foot{display:flex;justify-content:space-between;align-items:flex-end;color:#8f8576;font-size:12px;}
+  .cover-rule{width:60px;height:3px;background:#FAFAF8;border-radius:3px;margin:30px 0 0;}
+
+  /* ---------- HEADER de página interna ---------- */
+  .phead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:30px;}
+  .phead .logo-txt b{color:var(--ink);font-size:18px;}
+  .phead .logo-txt span{color:var(--muted);font-size:7.5px;letter-spacing:0.34em;}
+  .phead .pnum{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+
+  h2.title{font-size:33px;line-height:1.06;margin-bottom:14px;}
+  .section-intro{font-size:15px;max-width:92%;margin-bottom:28px;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+
+  .card{
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:22px 20px;
+  }
+  .card h3{font-size:17px;margin-bottom:9px;letter-spacing:-0.01em;}
+  .card p{font-size:13px;line-height:1.55;}
+  .card .num{font-size:13px;font-weight:800;color:var(--dark);background:var(--card);width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+
+  .feat{display:flex;gap:13px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line);}
+  .feat:last-child{border-bottom:none;}
+  .feat .dot{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--dark);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .feat b{font-size:14.5px;font-weight:700;color:var(--ink);display:block;}
+  .feat span{font-size:13px;color:var(--muted);}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg-alt);}
+  .stat{padding:22px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .stat:nth-child(3n){border-right:none;}
+  .stat:nth-child(n+4){border-bottom:none;}
+  .stat b{display:block;font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-0.02em;line-height:1.05;}
+  .stat span{font-size:12px;color:var(--muted);margin-top:6px;display:block;}
+
+  /* Mockup do site */
+  .browser{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;}
+  .browser-bar{background:var(--bg-alt);border-bottom:1px solid var(--line);padding:11px 16px;display:flex;align-items:center;gap:7px;}
+  .browser-bar i{width:11px;height:11px;border-radius:50%;background:#d8d2c8;display:block;}
+  .browser-bar .url{margin-left:14px;background:#fff;border:1px solid var(--line);border-radius:9999px;font-size:11px;color:var(--muted);padding:5px 16px;}
+  .shot-hero{background:var(--bg);padding:32px 30px 28px;}
+  .shot-hero h4{font-size:28px;font-weight:800;letter-spacing:-0.02em;line-height:1.04;max-width:82%;}
+  .shot-hero .shot-sub{font-size:13px;color:var(--muted);margin-top:12px;max-width:78%;}
+  .shot-search{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:8px;}
+  .shot-search .f{flex:1;border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:11px;color:var(--muted);background:var(--bg-alt);}
+  .shot-search .b{background:var(--dark);color:#fff;border-radius:9px;padding:9px 16px;font-size:11px;font-weight:600;white-space:nowrap;}
+  .shot-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:18px;}
+  .shot-card{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;}
+  .shot-card .img{height:58px;background:linear-gradient(135deg,#e7e1d7,#d9d2c6);}
+  .shot-card .meta{padding:11px 12px;}
+  .shot-card .price{font-size:14px;font-weight:800;color:var(--ink);}
+  .shot-card .desc{font-size:10.5px;color:var(--muted);margin-top:3px;}
+  .shot-card .chips{display:flex;gap:5px;margin-top:8px;}
+  .shot-card .chip{font-size:9px;color:var(--muted);background:var(--card);border-radius:9999px;padding:3px 8px;}
+
+  /* CTA escuro */
+  .cta{background:var(--dark);border-radius:22px;padding:36px 34px;color:#FAFAF8;display:flex;flex-direction:column;gap:13px;}
+  .cta h2{color:#FAFAF8;font-size:28px;}
+  .cta p{color:#bcb2a4;font-size:15px;}
+  .cta .pill{align-self:flex-start;background:#FAFAF8;color:var(--dark);font-weight:700;font-size:14px;padding:13px 26px;border-radius:9999px;margin-top:6px;}
+
+  .foot-note{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
+
+  .next li{list-style:none;display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line);}
+  .next li:last-child{border-bottom:none;}
+  .next .n{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:var(--card);color:var(--dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .next b{font-size:15px;display:block;}
+  .next span{font-size:13px;color:var(--muted);}
+
+  /* Etapas (timeline simples) */
+  .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  .step{background:var(--bg-alt);border:1px solid var(--line);border-radius:18px;padding:22px 20px;display:flex;flex-direction:column;gap:8px;}
+  .step .lbl{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#fff;background:var(--dark);align-self:flex-start;padding:4px 11px;border-radius:9999px;}
+  .step b{font-size:16px;}
+  .step .price{font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-0.02em;line-height:1.05;}
+  .step .price em{display:block;font-style:normal;font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.14em;color:var(--muted);margin-bottom:4px;}
+  .step .price small{display:block;font-size:10.5px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:5px;line-height:1.4;}
+  .step p{font-size:12.5px;line-height:1.5;}
+  .step .now{background:#5a7d5a;}
+
+  /* Bloco renda */
+  .rev{display:flex;gap:14px;align-items:flex-start;background:var(--bg-alt);border:1px solid var(--line);border-radius:16px;padding:20px 20px;margin-bottom:14px;}
+  .rev .ic{flex:0 0 auto;width:42px;height:42px;border-radius:11px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:var(--dark);}
+  .rev b{font-size:16px;display:block;margin-bottom:3px;}
+  .rev p{font-size:13px;line-height:1.5;}
+
+  .quote{background:var(--bg-alt);border-left:3px solid var(--dark);border-radius:0 12px 12px 0;padding:18px 22px;font-size:14.5px;color:#3a3a3a;font-style:italic;margin-top:6px;}
+</style>
+</head>
+<body>
+
+<!-- ============ CAPA ============ -->
+<section class="page cover">
+  <div class="pad">
+    <div>
+      <div class="logo-mark">
+        <div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div>
+      </div>
+      <div class="cover-rule"></div>
+    </div>
+    <div>
+      <div class="eyebrow">Apresentação do projeto</div>
+      <h1>Uma imobiliária<br>com cara de<br>profissional,<br>desde o primeiro dia</h1>
+      <p class="sub">Como dar à imobiliária uma presença digital de verdade: um site bonito, contato fácil pelo WhatsApp e clientes chegando sozinhos. Começando enxuto e crescendo conforme o negócio anda.</p>
+    </div>
+    <div class="cover-foot">
+      <span>Proposta de presença digital</span>
+      <span>Alto da Lapa · Vila Leopoldina · Pompeia · Perdizes · Lapa</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 — A OPORTUNIDADE ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div></div>
+      <div class="pnum">02 · O ponto de partida</div>
+    </div>
+    <div class="eyebrow">Por que agora</div>
+    <h2 class="title">Vocês já têm o mais difícil.<br>Falta a parte digital.</h2>
+    <p class="section-intro lead">Para abrir uma imobiliária forte, o principal vocês já têm: registro, ponto e conhecimento da região. O que falta hoje é o que faz o cliente encontrar vocês e confiar antes mesmo de ligar. É isso que esse projeto resolve.</p>
+
+    <div class="grid3" style="margin-top:6px;">
+      <div class="card">
+        <div class="num">1</div>
+        <h3>Registro e ponto</h3>
+        <p>A parceria já conta com o CRECI e um espaço físico no Alto da Lapa, em uma das regiões mais valorizadas de São Paulo.</p>
+      </div>
+      <div class="card">
+        <div class="num">2</div>
+        <h3>Conhecimento de bairro</h3>
+        <p>Vocês conhecem a região de perto: Alto da Lapa, Vila Leopoldina, Pompeia, Perdizes e Lapa. Isso é o que vale ouro num imóvel.</p>
+      </div>
+      <div class="card">
+        <div class="num">3</div>
+        <h3>O que falta</h3>
+        <p>Hoje o negócio depende do boca a boca. Sem presença digital, muito cliente nem chega a saber que vocês existem.</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      "Hoje é tudo muito boca a boca. Para alavancar e crescer, a gente precisa aparecer." Foi disso que partimos para montar esta proposta.
+    </div>
+
+    <div class="foot-note">
+      <span>Sua Imobiliária · Apresentação do projeto</span>
+      <span>02</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — O QUE A GENTE ENTREGA ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div></div>
+      <div class="pnum">03 · O que é</div>
+    </div>
+    <div class="eyebrow">O projeto, em uma frase</div>
+    <h2 class="title">Um site que mostra os imóveis<br>e traz clientes pra vocês</h2>
+    <p class="section-intro">É a vitrine da imobiliária na internet. Quem busca um imóvel na região acha vocês no Google ou no Instagram, vê as opções com fotos e preço, e fala com vocês na hora pelo WhatsApp. Tudo simples, do jeito que o cliente gosta.</p>
+
+    <div class="browser">
+      <div class="browser-bar">
+        <i></i><i></i><i></i>
+        <span class="url">suaimobiliaria.com.br</span>
+      </div>
+      <div class="shot-hero">
+        <div class="eyebrow" style="margin-bottom:12px;">Imóveis na sua região</div>
+        <h4>O imóvel certo no bairro que você ama</h4>
+        <p class="shot-sub">A pessoa busca por bairro, tipo e preço e encontra o que procura em segundos.</p>
+        <div class="shot-search">
+          <div class="f">Comprar</div>
+          <div class="f">Bairro</div>
+          <div class="f">Tipo</div>
+          <div class="b">Buscar imóveis</div>
+        </div>
+        <div class="shot-cards">
+          <div class="shot-card">
+            <div class="img"></div>
+            <div class="meta">
+              <div class="price">R$ 890.000</div>
+              <div class="desc">Apartamento · Pompeia</div>
+              <div class="chips"><span class="chip">2 dorm</span><span class="chip">1 vaga</span><span class="chip">68m²</span></div>
+            </div>
+          </div>
+          <div class="shot-card">
+            <div class="img"></div>
+            <div class="meta">
+              <div class="price">R$ 1.450.000</div>
+              <div class="desc">Casa · Alto da Lapa</div>
+              <div class="chips"><span class="chip">3 dorm</span><span class="chip">2 vagas</span><span class="chip">140m²</span></div>
+            </div>
+          </div>
+          <div class="shot-card">
+            <div class="img"></div>
+            <div class="meta">
+              <div class="price">R$ 3.200/mês</div>
+              <div class="desc">Apartamento · Vila Leopoldina</div>
+              <div class="chips"><span class="chip">1 dorm</span><span class="chip">1 vaga</span><span class="chip">45m²</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:22px;font-size:13.5px;max-width:94%;">Esse já é o site real funcionando: foi montado como demonstração e está pronto para receber as fotos e os dados dos imóveis de vocês. Não é desenho, é o produto.</p>
+
+    <div class="foot-note">
+      <span>Sua Imobiliária · Apresentação do projeto</span>
+      <span>03</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — DIFERENCIAIS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div></div>
+      <div class="pnum">04 · O diferencial</div>
+    </div>
+    <div class="eyebrow">O que faz a diferença</div>
+    <h2 class="title">Mais clientes certos,<br>menos tempo perdido</h2>
+    <p class="section-intro">Não adianta só receber muita mensagem. O segredo é receber as mensagens certas e atender bem quem realmente quer fechar. O projeto foi pensado exatamente pra isso.</p>
+
+    <div class="grid3" style="margin-top:6px;">
+      <div class="card">
+        <div class="num">✓</div>
+        <h3>Atendimento de gente</h3>
+        <p>Nada de robô que irrita e não resolve. O cliente fala direto com vocês pelo WhatsApp. O atendimento humano continua sendo o coração do negócio.</p>
+      </div>
+      <div class="card">
+        <div class="num">✓</div>
+        <h3>Filtro de contatos</h3>
+        <p>O site faz uma primeira triagem: pergunta o que a pessoa procura e quanto pretende investir. Quem está fora do perfil não toma o tempo de vocês.</p>
+      </div>
+      <div class="card">
+        <div class="num">✓</div>
+        <h3>Cara de confiança</h3>
+        <p>Visual sóbrio e profissional, que passa seriedade. O cliente sente que está falando com uma imobiliária de verdade, não com um anúncio solto.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:26px;">
+      <div class="eyebrow">Por que o filtro importa</div>
+      <p style="font-size:14px;max-width:94%;margin-bottom:14px;">Na prática, a maioria dos contatos não vira negócio. Muita gente pede informação, marca e não aparece. Sem um filtro, vocês gastam o dia respondendo curioso. Com ele, vocês falam primeiro com quem tem mais chance de fechar.</p>
+      <div class="quote" style="margin-top:0;">
+        "Eu recebia uns 10 contatos, marcava quatro reuniões e quase ninguém aparecia." O filtro existe pra cortar esse desperdício de tempo logo na entrada.
+      </div>
+    </div>
+
+    <div class="foot-note">
+      <span>Sua Imobiliária · Apresentação do projeto</span>
+      <span>04</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — TRÊS FORMAS DE GANHAR ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div></div>
+      <div class="pnum">05 · As frentes</div>
+    </div>
+    <div class="eyebrow">De onde vem o dinheiro</div>
+    <h2 class="title">Três formas de faturar,<br>no mesmo site</h2>
+    <p class="section-intro">O projeto atende as três frentes da imobiliária de uma vez. E uma delas traz uma renda que cai todo mês, não só quando sai uma venda.</p>
+
+    <div class="rev">
+      <div class="ic">1</div>
+      <div>
+        <b>Venda de imóveis</b>
+        <p>A comissão maior, que entra a cada negócio fechado. O site mostra os imóveis com fotos e detalhes e leva o interessado direto pra vocês.</p>
+      </div>
+    </div>
+    <div class="rev">
+      <div class="ic">2</div>
+      <div>
+        <b>Locação</b>
+        <p>Aluguel de apartamentos, casas e salas comerciais. Mesma vitrine, mesmo caminho de contato, atendendo quem quer alugar.</p>
+      </div>
+    </div>
+    <div class="rev">
+      <div class="ic">3</div>
+      <div>
+        <b>Administração de condomínios</b>
+        <p>Aqui está a renda fixa mensal: cuidar da parte financeira do condomínio, incluindo a cobrança de quem está atrasado. Diferente da venda, esse valor entra todo mês e ajuda a cobrir as contas fixas.</p>
+      </div>
+    </div>
+
+    <div class="cta" style="margin-top:22px;">
+      <h2>Renda fixa muda o jogo</h2>
+      <p>Pegar a administração de um ou dois condomínios da região já ajuda a pagar as despesas fixas do mês, enquanto as vendas, que são maiores, vêm por cima.</p>
+    </div>
+
+    <div class="foot-note">
+      <span>Sua Imobiliária · Apresentação do projeto</span>
+      <span>05</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — COMO COMEÇAR SEM GASTAR DEMAIS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div></div>
+      <div class="pnum">06 · O investimento</div>
+    </div>
+    <div class="eyebrow">Começar do jeito certo</div>
+    <h2 class="title">Começar pequeno e crescer<br>conforme der resultado</h2>
+    <p class="section-intro">Ninguém precisa gastar uma fortuna pra começar. A ideia é colocar no ar uma versão enxuta, que já gera contato, e ir crescendo conforme o negócio se paga. Cada passo só acontece quando faz sentido.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="lbl now">Começo aqui</span>
+        <b>Site essencial</b>
+        <div class="price"><em>a partir de</em>R$ 15 mil<small>Entrega rápida, em cerca de uma semana</small></div>
+        <p>A vitrine de imóveis com WhatsApp e contato, pronta pra rodar. É o que está sendo apresentado aqui e o suficiente pra começar a aparecer e atender.</p>
+      </div>
+      <div class="step">
+        <span class="lbl">Quando crescer</span>
+        <b>Versão intermediária</b>
+        <div class="price"><em>a partir de</em>R$ 150 mil<small>Conforme o movimento justificar</small></div>
+        <p>Painel pra controlar os imóveis, área dos condomínios e mais automações. Entra quando o negócio já estiver rodando.</p>
+      </div>
+      <div class="step">
+        <span class="lbl">Lá na frente</span>
+        <b>Plataforma completa</b>
+        <div class="price"><em>a partir de</em>R$ 250 mil<small>Construída aos poucos, sem aperto</small></div>
+        <p>Tudo integrado, no estilo das grandes plataformas do mercado. O destino final do projeto.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;">
+      <p style="font-size:13.5px;max-width:96%;">Os valores acima são uma referência de mercado pra cada etapa. Dá pra começar pelo site essencial, o passo natural de quem está abrindo agora, e subir de etapa só quando o negócio pedir. A manutenção é proporcional ao movimento: nada daquela mensalidade fixa alta que pesa antes do negócio andar. Os valores finais vão na proposta que acompanha esta apresentação.</p>
+    </div>
+
+    <div class="quote">
+      "Para quem está começando do zero, precisa ser o mínimo dos mínimos, só pra ter algo rodando." É exatamente essa a proposta desta primeira etapa.
+    </div>
+
+    <div class="foot-note">
+      <span>Sua Imobiliária · Apresentação do projeto</span>
+      <span>06</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — DÁ PRA CRESCER DEPOIS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div></div>
+      <div class="pnum">07 · O futuro</div>
+    </div>
+    <div class="eyebrow">Quando o negócio pedir</div>
+    <h2 class="title">O que dá pra acrescentar<br>com o tempo</h2>
+    <p class="section-intro">O site começa enxuto, mas é feito pra crescer. Conforme a imobiliária se firma, dá pra ligar novos recursos, sem refazer nada do zero. Alguns exemplos do que vem por aí:</p>
+
+    <div class="grid2" style="gap:0 46px;">
+      <div>
+        <div class="feat"><span class="dot">+</span><div><b>Área do condomínio</b><span>O síndico vê quem está em atraso e resolve os acordos pela tela, sem papelada.</span></div></div>
+        <div class="feat"><span class="dot">+</span><div><b>Painel dos imóveis</b><span>Controle do que está à venda, alugado ou reservado, tudo num lugar só.</span></div></div>
+        <div class="feat"><span class="dot">+</span><div><b>Mapa dos imóveis</b><span>O cliente vê na região onde fica cada opção, do jeito das grandes plataformas.</span></div></div>
+      </div>
+      <div>
+        <div class="feat"><span class="dot">+</span><div><b>Posts pras redes sociais</b><span>Gerar imagem e legenda dos imóveis pra Instagram sem depender de designer.</span></div></div>
+        <div class="feat"><span class="dot">+</span><div><b>Documentos digitais</b><span>Assinar contratos pela internet, sem rubricar página por página.</span></div></div>
+        <div class="feat"><span class="dot">+</span><div><b>Análise do cliente</b><span>Conferir, com segurança, se o cliente tem renda pra fechar o negócio.</span></div></div>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;font-size:13.5px;max-width:94%;">Nada disso precisa entrar agora. A lista existe pra mostrar que o projeto tem pra onde crescer e acompanha a imobiliária à medida que ela ganha tamanho.</p>
+
+    <div class="foot-note">
+      <span>Sua Imobiliária · Apresentação do projeto</span>
+      <span>07</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 — PRÓXIMOS PASSOS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div></div>
+      <div class="pnum">08 · Próximos passos</div>
+    </div>
+    <div class="eyebrow">A partir daqui</div>
+    <h2 class="title">O caminho até o site<br>no ar é curto</h2>
+    <p class="section-intro">Com a parceria fechada e as fotos em mãos, dá pra colocar a imobiliária na internet em pouco tempo.</p>
+
+    <ul class="next">
+      <li><span class="n">1</span><div><b>Definir o nome e a marca</b><span>Nome da imobiliária, cores e logo. O nome usado nesta demonstração é só provisório.</span></div></li>
+      <li><span class="n">2</span><div><b>Reunir os imóveis</b><span>Fotos, valores e informações dos primeiros imóveis pra colocar no ar.</span></div></li>
+      <li><span class="n">3</span><div><b>Ajustar os contatos</b><span>WhatsApp, telefone, endereço e horários reais da imobiliária.</span></div></li>
+      <li><span class="n">4</span><div><b>Publicar e divulgar</b><span>Site no ar com endereço próprio, ligado ao Google e às redes sociais.</span></div></li>
+    </ul>
+
+    <div class="cta" style="margin-top:26px;">
+      <h2>Vamos tirar isso do papel?</h2>
+      <p>O site já existe e está funcionando. O próximo passo é uma conversa sobre marca, imóveis e prazos pra colocar a imobiliária no ar.</p>
+      <span class="pill">Falar com a equipe</span>
+    </div>
+
+    <div class="foot-note">
+      <span>Sua Imobiliária · Apresentação do projeto · Feito por Felipe</span>
+      <span>08</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

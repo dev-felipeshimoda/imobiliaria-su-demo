@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Leopoldina Imóveis | Imóveis na Pompeia, Lapa e Vila Leopoldina</title>
+  <meta name="description" content="Imobiliária de bairro premium. Compra, venda e locação de imóveis na Pompeia, Lapa, Alto da Lapa e Vila Leopoldina. Administração de imóveis e condomínios.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><b>Leopoldina</b><span>Imóveis</span></a>
+      <nav class="nav">
+        <a href="index.html" class="active">Início</a>
+        <a href="imoveis.html">Imóveis</a>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn--primary" href="contato.html">Anuncie seu imóvel</a>
+        <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>O imóvel certo no bairro que você ama</h1>
+      <p>Compra, venda e locação na Pompeia, Lapa, Alto da Lapa e Vila Leopoldina, com o cuidado de quem conhece a região de perto.</p>
+
+      <form class="searchbox" id="home-search">
+        <input type="hidden" name="finalidade" value="venda">
+        <div class="tabs">
+          <button type="button" class="tab active" data-val="venda">Comprar</button>
+          <button type="button" class="tab" data-val="locacao">Alugar</button>
+        </div>
+        <div class="fields">
+          <div class="field">
+            <label>Bairro</label>
+            <select name="bairro">
+              <option value="">Todos os bairros</option>
+              <option>Pompeia</option>
+              <option>Lapa</option>
+              <option>Alto da Lapa</option>
+              <option>Vila Leopoldina</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Tipo</label>
+            <select name="tipo">
+              <option value="">Todos</option>
+              <option>Apartamento</option>
+              <option>Casa</option>
+              <option>Comercial</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Código</label>
+            <input type="text" name="codigo" placeholder="Ex: LEO-1001">
+          </div>
+          <button class="btn btn--primary" type="submit">Buscar imóveis</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><b>4</b><span>bairros de atuação</span></div>
+        <div class="stat"><b>+120</b><span>imóveis no portfólio</span></div>
+        <div class="stat"><b>15 anos</b><span>de experiência na região</span></div>
+        <div class="stat"><b>98%</b><span>de clientes satisfeitos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTAQUES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Seleção da semana</div>
+        <h2>Imóveis em destaque</h2>
+        <p>Uma curadoria dos imóveis mais procurados nos nossos bairros.</p>
+      </div>
+      <div class="grid-cards" id="destaques"></div>
+      <div style="text-align:center; margin-top:40px">
+        <a class="btn btn--ghost btn--lg" href="imoveis.html">Ver todos os imóveis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS -->
+  <section class="section" style="background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div class="section-head center">
+        <div class="eyebrow">Explore</div>
+        <h2>Encontre por tipo de imóvel</h2>
+      </div>
+      <div class="cat-grid">
+        <a class="cat" href="imoveis.html?tipo=Apartamento">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=700&q=70" alt="Apartamentos">
+          <b>Apartamentos</b>
+        </a>
+        <a class="cat" href="imoveis.html?tipo=Casa">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=700&q=70" alt="Casas">
+          <b>Casas</b>
+        </a>
+        <a class="cat" href="imoveis.html?tipo=Comercial">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=70" alt="Comercial">
+          <b>Comercial</b>
+        </a>
+        <a class="cat" href="imoveis.html?finalidade=locacao">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=70" alt="Para alugar">
+          <b>Para alugar</b>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICOS -->
+  <section class="section" id="servicos">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">O que fazemos</div>
+        <h2>Mais que anunciar: cuidamos do imóvel inteiro</h2>
+        <p>Da venda à administração do dia a dia, resolvemos a parte chata pra você.</p>
+      </div>
+      <div class="serv-grid">
+        <div class="serv">
+          <div class="ico" data-icon="tag"></div>
+          <h3>Venda e locação</h3>
+          <p>Avaliação justa, anúncio profissional e acompanhamento da negociação até a assinatura. Você vende ou aluga sem dor de cabeça.</p>
+        </div>
+        <div class="serv">
+          <div class="ico" data-icon="key"></div>
+          <h3>Administração de imóveis</h3>
+          <p>Cuidamos de contratos, repasses, vistorias e manutenção. Seu imóvel rende e você não precisa se preocupar com nada.</p>
+        </div>
+        <div class="serv">
+          <div class="ico" data-icon="building"></div>
+          <h3>Administração de condomínios</h3>
+          <p>Gestão completa do condomínio, incluindo cobrança e recuperação de parcelas em atraso. Trazemos a inadimplência de volta ao controle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAIRROS -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Onde atuamos</div>
+        <h2>Bairros que conhecemos de cor</h2>
+      </div>
+      <div class="hoods">
+        <a href="imoveis.html?bairro=Pompeia">Pompeia</a>
+        <a href="imoveis.html?bairro=Lapa">Lapa</a>
+        <a href="imoveis.html?bairro=Alto da Lapa">Alto da Lapa</a>
+        <a href="imoveis.html?bairro=Vila Leopoldina">Vila Leopoldina</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h2>Quer vender ou alugar seu imóvel?</h2>
+          <p>Fazemos uma avaliação gratuita e cuidamos de tudo, do anúncio à assinatura do contrato.</p>
+        </div>
+        <a class="btn btn--primary btn--lg" href="contato.html">Falar com a corretora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="index.html"><b>Leopoldina</b><span>Imóveis</span></a>
+          <p>Imobiliária de bairro premium na zona oeste de São Paulo. Compra, venda, locação e administração.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Imóveis</h4>
+          <a href="imoveis.html?finalidade=venda">Comprar</a>
+          <a href="imoveis.html?finalidade=locacao">Alugar</a>
+          <a href="imoveis.html?tipo=Comercial">Comercial</a>
+          <a href="contato.html">Anuncie seu imóvel</a>
+        </div>
+        <div class="footer-col">
+          <h4>Bairros</h4>
+          <a href="imoveis.html?bairro=Pompeia">Pompeia</a>
+          <a href="imoveis.html?bairro=Lapa">Lapa</a>
+          <a href="imoveis.html?bairro=Alto da Lapa">Alto da Lapa</a>
+          <a href="imoveis.html?bairro=Vila Leopoldina">Vila Leopoldina</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul>
+            <li>Rua Clélia, Pompeia, São Paulo/SP</li>
+            <li>(11) 0000-0000</li>
+            <li>contato@leopoldinaimoveis.com.br</li>
+            <li>Seg a Sex das 9h às 18h · Sáb das 9h às 13h</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Leopoldina Imóveis · CRECI 00000-J (fictício)</span>
+        <span>Site-demo criado por Felipe · MazyOS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

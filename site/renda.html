@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Análise de renda | Leopoldina Imóveis</title>
+  <meta name="description" content="Análise de renda via Open Finance: valide a capacidade financeira do cliente pelo CPF.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="renda" data-nivel-req="3">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><b>Leopoldina</b><span>Imóveis</span></a>
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="imoveis.html">Imóveis</a>
+        <a href="quem-somos.html">Quem somos</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn--primary" href="contato.html">Anuncie seu imóvel</a>
+        <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Início</a> › Gestão › Análise de renda</div>
+      <span class="gx-etapa gx-etapa--3">Etapa 3 · Plataforma</span>
+      <h1>Análise de renda</h1>
+      <p>Antes de seguir com a negociação, a plataforma valida a renda do cliente pelo CPF via Open Finance e mostra na hora se o imóvel cabe no orçamento dele.</p>
+    </div>
+  </section>
+
+  <div class="container gx-wrap">
+    <div class="gx-cols gx-cols--13">
+      <div class="gx-panel">
+        <div class="gx-panel-head"><h2>Consultar cliente</h2></div>
+        <form class="form" id="renda-form">
+          <div><label>CPF do cliente</label><input id="cpf" placeholder="000.000.000-00" inputmode="numeric" required></div>
+          <div><label>Imóvel de interesse</label><select id="imovel"></select></div>
+          <div><label>Tipo de operação</label>
+            <select id="op">
+              <option value="financiamento">Financiamento (compra)</option>
+              <option value="aluguel">Aluguel</option>
+            </select>
+          </div>
+          <button class="btn btn--brand btn--block" type="submit">Analisar via Open Finance</button>
+          <p class="form-note">Demonstração: nenhum dado real é consultado. A renda é gerada a partir do CPF digitado.</p>
+        </form>
+      </div>
+
+      <div class="gx-panel">
+        <div class="gx-panel-head"><h2>Resultado</h2></div>
+        <div id="resultado"><p class="gx-empty">Informe um CPF e um imóvel para ver a análise.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 Leopoldina Imóveis · CRECI 00000-J (fictício)</span>
+        <span>Site-demo criado por Felipe · MazyOS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/data-gestao.js"></script>
+  <script src="js/nivel.js"></script>
+  <script src="js/renda.js"></script>
+</body>
+</html>

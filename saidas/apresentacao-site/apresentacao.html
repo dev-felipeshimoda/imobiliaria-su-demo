@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Leopoldina Imóveis | Apresentação do Site</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F1EC;
+    --bg-alt:#FAFAF8;
+    --dark:#1A1613;
+    --ink:#1A1A1A;
+    --muted:#6B6B6B;
+    --line:#E3DFD7;
+    --card:#EAE6DF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;}
+
+  /* Sem margem do navegador: evita páginas em branco entre as A4 */
+  @page{size:210mm 297mm;margin:0;}
+
+  /* Cada página: A4 retrato */
+  .page{
+    width:210mm;
+    height:297mm;
+    position:relative;
+    overflow:hidden;
+    background:var(--bg);
+    display:flex;
+    flex-direction:column;
+    break-after:page;
+  }
+  .page:last-child{break-after:auto;}
+  .pad{padding:26mm 22mm;flex:1;display:flex;flex-direction:column;}
+
+  /* Tipografia */
+  h1,h2,h3{font-weight:800;letter-spacing:-0.02em;line-height:1.0;color:var(--ink);}
+  .eyebrow{
+    display:inline-block;
+    font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.18em;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:6px 14px;border-radius:9999px;
+    background:var(--bg-alt);
+    margin-bottom:18px;
+  }
+  p{color:var(--muted);font-size:14px;}
+  .lead{font-size:16px;color:#3a3a3a;}
+
+  /* ---------- CAPA ---------- */
+  .cover{background:var(--dark);color:#FAFAF8;}
+  .cover .pad{padding:26mm 22mm;justify-content:space-between;}
+  .cover .eyebrow{color:#cfc6ba;border-color:rgba(255,255,255,.18);background:transparent;}
+  .cover h1{color:#FAFAF8;font-size:58px;line-height:1.0;letter-spacing:-0.03em;}
+  .cover .sub{color:#bcb2a4;font-size:17px;max-width:80%;margin-top:22px;}
+  /* Logo = tipografia (igual ao site): "Leopoldina" + "IMÓVEIS" empilhado, alinhado à direita */
+  .logo-mark{display:inline-flex;}
+  .logo-txt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1;}
+  .logo-txt b{font-weight:600;font-size:26px;line-height:.9;letter-spacing:-0.015em;color:#FAFAF8;text-transform:none;}
+  .logo-txt span{font-weight:500;font-size:10px;letter-spacing:0.36em;text-transform:uppercase;color:#bcb2a4;margin-left:2px;}
+  .cover-foot{display:flex;justify-content:space-between;align-items:flex-end;color:#8f8576;font-size:12px;}
+  .cover-rule{width:60px;height:3px;background:#FAFAF8;border-radius:3px;margin:30px 0 0;}
+
+  /* ---------- HEADER de página interna ---------- */
+  .phead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:34px;}
+  .phead .logo-txt b{color:var(--ink);font-size:18px;}
+  .phead .logo-txt span{color:var(--muted);font-size:7.5px;letter-spacing:0.34em;}
+  .phead .pnum{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+
+  h2.title{font-size:34px;line-height:1.05;margin-bottom:14px;}
+  .section-intro{font-size:15px;max-width:90%;margin-bottom:30px;}
+
+  /* Grids genéricos */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+
+  .card{
+    background:var(--bg-alt);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:24px 22px;
+    box-shadow:0 8px 30px rgba(26,22,19,.05);
+  }
+  .card h3{font-size:18px;margin-bottom:9px;letter-spacing:-0.01em;}
+  .card p{font-size:13px;line-height:1.55;}
+  .card .num{font-size:13px;font-weight:800;color:var(--dark);background:var(--card);width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+
+  /* Lista de features com check */
+  .feat{display:flex;gap:13px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line);}
+  .feat:last-child{border-bottom:none;}
+  .feat .dot{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--dark);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .feat b{font-size:14.5px;font-weight:700;color:var(--ink);display:block;}
+  .feat span{font-size:13px;color:var(--muted);}
+
+  /* Stats band */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg-alt);}
+  .stat{padding:22px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .stat:nth-child(3n){border-right:none;}
+  .stat:nth-child(n+4){border-bottom:none;}
+  .stat b{display:block;font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-0.02em;line-height:1;}
+  .stat span{font-size:12px;color:var(--muted);margin-top:6px;display:block;}
+
+  /* Páginas / sitemap */
+  .pagecard{background:var(--bg-alt);border:1px solid var(--line);border-radius:16px;padding:20px 20px;display:flex;flex-direction:column;gap:6px;}
+  .pagecard .tag{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#fff;background:var(--dark);align-self:flex-start;padding:4px 10px;border-radius:9999px;margin-bottom:6px;}
+  .pagecard b{font-size:15.5px;}
+  .pagecard p{font-size:12.5px;line-height:1.5;}
+
+  /* Mockup do site (página visual) */
+  .browser{border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 16px 50px rgba(26,22,19,.12);background:#fff;}
+  .browser-bar{background:var(--bg-alt);border-bottom:1px solid var(--line);padding:11px 16px;display:flex;align-items:center;gap:7px;}
+  .browser-bar i{width:11px;height:11px;border-radius:50%;background:#d8d2c8;display:block;}
+  .browser-bar .url{margin-left:14px;background:#fff;border:1px solid var(--line);border-radius:9999px;font-size:11px;color:var(--muted);padding:5px 16px;}
+  .shot-hero{background:var(--bg);padding:34px 30px 30px;}
+  .shot-hero .eyebrow{margin-bottom:14px;}
+  .shot-hero h4{font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.02;max-width:80%;}
+  .shot-hero .shot-sub{font-size:13px;color:var(--muted);margin-top:12px;max-width:75%;}
+  .shot-search{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:8px;box-shadow:0 8px 30px rgba(26,22,19,.06);}
+  .shot-search .f{flex:1;border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:11px;color:var(--muted);background:var(--bg-alt);}
+  .shot-search .b{background:var(--dark);color:#fff;border-radius:9px;padding:9px 16px;font-size:11px;font-weight:600;white-space:nowrap;}
+  .shot-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:18px;}
+  .shot-card{background:#fff;border:1px solid var(--line);border-radius:13px;overflow:hidden;}
+  .shot-card .img{height:62px;background:linear-gradient(135deg,#e7e1d7,#d9d2c6);}
+  .shot-card .meta{padding:11px 12px;}
+  .shot-card .price{font-size:14px;font-weight:800;color:var(--ink);}
+  .shot-card .desc{font-size:10.5px;color:var(--muted);margin-top:3px;}
+  .shot-card .chips{display:flex;gap:5px;margin-top:8px;}
+  .shot-card .chip{font-size:9px;color:var(--muted);background:var(--card);border-radius:9999px;padding:3px 8px;}
+
+  /* CTA escuro */
+  .cta{background:var(--dark);border-radius:22px;padding:40px 38px;color:#FAFAF8;display:flex;flex-direction:column;gap:14px;}
+  .cta h2{color:#FAFAF8;font-size:30px;}
+  .cta p{color:#bcb2a4;font-size:15px;}
+  .cta .pill{align-self:flex-start;background:#FAFAF8;color:var(--dark);font-weight:700;font-size:14px;padding:13px 26px;border-radius:9999px;margin-top:6px;}
+
+  .foot-note{margin-top:auto;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
+
+  .next li{list-style:none;display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);}
+  .next li:last-child{border-bottom:none;}
+  .next .n{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:var(--card);color:var(--dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .next b{font-size:15px;display:block;}
+  .next span{font-size:13px;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<!-- ============ CAPA ============ -->
+<section class="page cover">
+  <div class="pad">
+    <div>
+      <div class="logo-mark">
+        <div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div>
+      </div>
+      <div class="cover-rule"></div>
+    </div>
+    <div>
+      <div class="eyebrow">Apresentação do projeto · Site institucional</div>
+      <h1>O imóvel certo<br>no bairro que<br>você ama</h1>
+      <p class="sub">Uma proposta de site para a imobiliária: presença digital premium, pensada para gerar contato e transmitir a confiança de quem conhece a região de perto.</p>
+    </div>
+    <div class="cover-foot">
+      <span>Proposta de site · versão demonstrativa</span>
+      <span>Pompeia · Lapa · Alto da Lapa · Vila Leopoldina</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 — A IDEIA ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">02 · A proposta</div>
+    </div>
+    <div class="eyebrow">A ideia</div>
+    <h2 class="title">Um site que trabalha pela<br>imobiliária todos os dias</h2>
+    <p class="section-intro lead">A proposta é dar à imobiliária uma vitrine digital à altura da região onde ela atua: um site bonito, rápido e fácil de navegar, que apresenta os imóveis com clareza e transforma quem chega pelo Google ou pelo Instagram em um contato real no WhatsApp.</p>
+
+    <div class="grid3" style="margin-top:6px;">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Transmite confiança</h3>
+        <p>Visual sóbrio e premium que posiciona a imobiliária como referência de bairro, não como mais um anúncio perdido em portais.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Mostra os imóveis</h3>
+        <p>Vitrine organizada com busca por bairro, tipo e finalidade. O cliente encontra o que procura em segundos.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Gera contato</h3>
+        <p>Botões de WhatsApp e formulário em cada página. Todo caminho leva o visitante a falar com a corretora.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:30px;">
+      <div class="eyebrow">Em números (conteúdo demonstrativo)</div>
+      <div class="stats">
+        <div class="stat"><b>5</b><span>Páginas completas</span></div>
+        <div class="stat"><b>4</b><span>Bairros de atuação</span></div>
+        <div class="stat"><b>3</b><span>Serviços apresentados</span></div>
+        <div class="stat"><b>100%</b><span>Adaptado ao celular</span></div>
+        <div class="stat"><b>WhatsApp</b><span>Contato direto</span></div>
+        <div class="stat"><b>SEO</b><span>Pronto pro Google</span></div>
+      </div>
+    </div>
+
+    <div class="foot-note">
+      <span>Leopoldina Imóveis · Apresentação do site</span>
+      <span>02</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — O VISUAL ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">03 · O visual</div>
+    </div>
+    <div class="eyebrow">Como o site se parece</div>
+    <h2 class="title">Primeira impressão que<br>valoriza o imóvel</h2>
+    <p class="section-intro">A página inicial recebe o visitante com uma busca direta e uma seleção de imóveis em destaque, no mesmo estilo sofisticado e clean do material abaixo.</p>
+
+    <div class="browser">
+      <div class="browser-bar">
+        <i></i><i></i><i></i>
+        <span class="url">leopoldinaimoveis.com.br</span>
+      </div>
+      <div class="shot-hero">
+        <div class="eyebrow" style="margin-bottom:12px;">Imobiliária de bairro premium</div>
+        <h4>O imóvel certo no bairro que você ama</h4>
+        <p class="shot-sub">Buscar seu próximo lar pode ser leve. A gente cuida de cada detalhe, com o cuidado de quem conhece a região de perto.</p>
+        <div class="shot-search">
+          <div class="f">Comprar</div>
+          <div class="f">Bairro</div>
+          <div class="f">Tipo</div>
+          <div class="b">Buscar imóveis</div>
+        </div>
+        <div class="shot-cards">
+          <div class="shot-card">
+            <div class="img"></div>
+            <div class="meta">
+              <div class="price">R$ 890.000</div>
+              <div class="desc">Apartamento · Pompeia</div>
+              <div class="chips"><span class="chip">2 dorm</span><span class="chip">1 vaga</span><span class="chip">68m²</span></div>
+            </div>
+          </div>
+          <div class="shot-card">
+            <div class="img"></div>
+            <div class="meta">
+              <div class="price">R$ 1.450.000</div>
+              <div class="desc">Casa · Alto da Lapa</div>
+              <div class="chips"><span class="chip">3 dorm</span><span class="chip">2 vagas</span><span class="chip">140m²</span></div>
+            </div>
+          </div>
+          <div class="shot-card">
+            <div class="img"></div>
+            <div class="meta">
+              <div class="price">R$ 3.200/mês</div>
+              <div class="desc">Apartamento · Vila Leopoldina</div>
+              <div class="chips"><span class="chip">1 dorm</span><span class="chip">1 vaga</span><span class="chip">45m²</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:24px;font-size:13.5px;max-width:92%;">O mesmo padrão visual, paleta bege e preto, tipografia forte e bastante respiro, se repete em todas as páginas, criando uma identidade consistente e memorável.</p>
+
+    <div class="foot-note">
+      <span>Leopoldina Imóveis · Apresentação do site</span>
+      <span>03</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — AS PÁGINAS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">04 · Estrutura</div>
+    </div>
+    <div class="eyebrow">O que o site tem</div>
+    <h2 class="title">Cinco páginas, cada uma<br>com um objetivo</h2>
+    <p class="section-intro">A navegação é simples e cobre toda a jornada do cliente, desde o primeiro interesse até o contato.</p>
+
+    <div class="grid2" style="gap:16px;">
+      <div class="pagecard">
+        <span class="tag">Início</span>
+        <b>Página inicial</b>
+        <p>Busca de imóveis, destaques da semana, categorias, serviços, bairros de atuação e perguntas frequentes. A porta de entrada do site.</p>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Imóveis</span>
+        <b>Vitrine de imóveis</b>
+        <p>Lista completa com filtros por finalidade, bairro, tipo e código, além de ordenação por preço. O cliente encontra rápido.</p>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Detalhe</span>
+        <b>Página do imóvel</b>
+        <p>Galeria de fotos, características, descrição e botão direto de contato. Tudo que o interessado precisa para decidir falar.</p>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Quem somos</span>
+        <b>História e valores</b>
+        <p>Apresenta a imobiliária, os 15 anos de região e os princípios de trabalho. É a página que constrói confiança.</p>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Serviços</span>
+        <b>O que a imobiliária faz</b>
+        <p>Venda, locação, administração de imóveis e de condomínios, com o passo a passo de como cada serviço funciona.</p>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Contato</span>
+        <b>Fale com a corretora</b>
+        <p>Formulário de contato e atalho direto para o WhatsApp, com resposta na hora. O ponto de conversão do site.</p>
+      </div>
+    </div>
+
+    <div class="foot-note">
+      <span>Leopoldina Imóveis · Apresentação do site</span>
+      <span>04</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — RECURSOS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">05 · Recursos</div>
+    </div>
+    <div class="eyebrow">Por dentro</div>
+    <h2 class="title">Recursos pensados para<br>gerar resultado</h2>
+    <p class="section-intro">Não é só bonito: cada detalhe existe para facilitar a vida do cliente e trazer mais contatos para a imobiliária.</p>
+
+    <div class="grid2" style="gap:0 46px;">
+      <div>
+        <div class="feat"><span class="dot">✓</span><div><b>Busca inteligente de imóveis</b><span>Filtros por finalidade, bairro, tipo e código, com ordenação por preço.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Vitrine com fotos e detalhes</b><span>Cada imóvel com galeria, características e descrição completa.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Contato direto no WhatsApp</b><span>Botão presente em todas as páginas, levando à conversa na hora.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Formulário de captação de leads</b><span>Visitante deixa nome, telefone e o que procura em poucos cliques.</span></div></div>
+      </div>
+      <div>
+        <div class="feat"><span class="dot">✓</span><div><b>100% adaptado ao celular</b><span>A maioria dos acessos vem do mobile, o site se ajusta a qualquer tela.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Otimizado para o Google (SEO)</b><span>Títulos e descrições preparados para aparecer nas buscas da região.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Carregamento rápido</b><span>Site leve, que abre em segundos mesmo em conexões mais lentas.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Fácil de atualizar</b><span>Novos imóveis e fotos entram sem complicação, conforme o catálogo cresce.</span></div></div>
+      </div>
+    </div>
+
+    <div class="cta" style="margin-top:34px;">
+      <h2>Pronto para receber os imóveis reais</h2>
+      <p>A estrutura já está montada. Basta alimentar com as fotos e os dados dos imóveis para o site entrar no ar e começar a gerar contato.</p>
+    </div>
+
+    <div class="foot-note">
+      <span>Leopoldina Imóveis · Apresentação do site</span>
+      <span>05</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — PRÓXIMOS PASSOS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">06 · Próximos passos</div>
+    </div>
+    <div class="eyebrow">A partir daqui</div>
+    <h2 class="title">Como saímos do demo<br>para o site no ar</h2>
+    <p class="section-intro">O caminho é curto. Com a marca definida e as fotos em mãos, o site fica pronto para publicar.</p>
+
+    <ul class="next">
+      <li><span class="n">1</span><div><b>Definir a identidade da marca</b><span>Nome final, cores e logo da imobiliária. O nome "Leopoldina" usado aqui é provisório, só para a demonstração.</span></div></li>
+      <li><span class="n">2</span><div><b>Reunir as fotos e dados dos imóveis</b><span>Imagens reais, valores, metragens e características de cada imóvel do catálogo inicial.</span></div></li>
+      <li><span class="n">3</span><div><b>Ajustar textos e contato</b><span>Endereço, telefone, WhatsApp e horários reais, além de pequenos ajustes de tom de voz.</span></div></li>
+      <li><span class="n">4</span><div><b>Publicar e divulgar</b><span>Colocar o site no ar com domínio próprio e conectar com Google e redes sociais.</span></div></li>
+    </ul>
+
+    <div class="cta" style="margin-top:30px;">
+      <h2>Vamos colocar isso no ar?</h2>
+      <p>O demo já mostra para onde o projeto pode ir. O próximo passo é conversar sobre marca, catálogo e prazos.</p>
+      <span class="pill">Falar com Felipe</span>
+    </div>
+
+    <div class="foot-note">
+      <span>Leopoldina Imóveis · Apresentação do site · Demo por Felipe</span>
+      <span>06</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

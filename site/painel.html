@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Painel da imobiliária | Leopoldina Imóveis</title>
+  <meta name="description" content="Backoffice da imobiliária: visão geral dos imóveis ativos, reservados e vendidos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="painel" data-nivel-req="2">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><b>Leopoldina</b><span>Imóveis</span></a>
+      <nav class="nav">
+        <a href="index.html">Início</a>
+        <a href="imoveis.html">Imóveis</a>
+        <a href="quem-somos.html">Quem somos</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn--primary" href="contato.html">Anuncie seu imóvel</a>
+        <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Início</a> › Gestão › Painel</div>
+      <span class="gx-etapa">Etapa 2 · Gestão</span>
+      <h1>Painel da imobiliária</h1>
+      <p>A visão do todo: quantos imóveis estão ativos, reservados e vendidos, e quanto valem. Mude o status de um imóvel e os números se ajustam na hora.</p>
+    </div>
+  </section>
+
+  <div class="container gx-wrap">
+    <div class="gx-kpis" id="kpis"></div>
+
+    <div class="gx-panel">
+      <div class="gx-panel-head">
+        <h2>Carteira de imóveis</h2>
+        <div class="gx-seg" id="filtro-status"></div>
+      </div>
+      <div id="tabela"></div>
+    </div>
+
+    <p class="gx-note">Demonstração: os dados ficam só no seu navegador. Use "Reiniciar" na barra de demonstração para voltar ao estado inicial.</p>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© 2026 Leopoldina Imóveis · CRECI 00000-J (fictício)</span>
+        <span>Site-demo criado por Felipe · MazyOS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/data-gestao.js"></script>
+  <script src="js/nivel.js"></script>
+  <script src="js/painel.js"></script>
+</body>
+</html>

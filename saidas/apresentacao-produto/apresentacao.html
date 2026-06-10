@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sua Imobiliária | Apresentação do produto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F1EC; --bg-alt:#FAFAF8; --dark:#1A1613; --ink:#1A1A1A; --muted:#6B6B6B;
+    --line:#E3DFD7; --card:#EAE6DF; --gold:#cbb994; --green:#4f8a52;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;}
+  @page{size:210mm 297mm;margin:0;}
+
+  .page{width:210mm;height:297mm;position:relative;overflow:hidden;background:var(--bg);display:flex;flex-direction:column;break-after:page;}
+  .page:last-child{break-after:auto;}
+  .pad{padding:22mm 20mm;flex:1;display:flex;flex-direction:column;}
+
+  h1,h2,h3{font-weight:800;letter-spacing:-0.02em;line-height:1.0;color:var(--ink);}
+  .eyebrow{display:inline-block;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.18em;color:var(--muted);border:1px solid var(--line);padding:6px 14px;border-radius:9999px;background:var(--bg-alt);margin-bottom:18px;}
+  p{color:var(--muted);font-size:14px;}
+  .lead{font-size:16px;color:#3a3a3a;}
+
+  /* capa */
+  .cover{background:var(--dark);color:#FAFAF8;}
+  .cover .pad{padding:26mm 22mm;justify-content:space-between;}
+  .cover .eyebrow{color:#cfc6ba;border-color:rgba(255,255,255,.18);background:transparent;}
+  .cover h1{color:#FAFAF8;font-size:50px;line-height:1.03;letter-spacing:-0.03em;}
+  .cover .sub{color:#bcb2a4;font-size:16.5px;max-width:86%;margin-top:22px;}
+  .logo-txt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1;}
+  .logo-txt b{font-weight:600;font-size:26px;line-height:.9;letter-spacing:-0.015em;color:#FAFAF8;}
+  .logo-txt span{font-weight:500;font-size:10px;letter-spacing:0.36em;text-transform:uppercase;color:#bcb2a4;margin-left:2px;}
+  .cover-foot{display:flex;justify-content:space-between;align-items:flex-end;color:#8f8576;font-size:12px;}
+  .cover-rule{width:60px;height:3px;background:#FAFAF8;border-radius:3px;margin:30px 0 0;}
+
+  /* header interno */
+  .phead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:26px;}
+  .phead .logo-txt b{color:var(--ink);font-size:17px;}
+  .phead .logo-txt span{color:var(--muted);font-size:7px;letter-spacing:0.34em;}
+  .phead .pnum{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+
+  h2.title{font-size:31px;line-height:1.07;margin-bottom:13px;}
+  .section-intro{font-size:14.5px;max-width:94%;margin-bottom:24px;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+
+  .card{background:var(--bg-alt);border:1px solid var(--line);border-radius:16px;padding:20px 18px;}
+  .card h3{font-size:16px;margin-bottom:8px;letter-spacing:-0.01em;}
+  .card p{font-size:12.5px;line-height:1.5;}
+  .card .num{font-size:13px;font-weight:800;color:var(--dark);background:var(--card);width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:13px;}
+
+  .feat{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line);}
+  .feat:last-child{border-bottom:none;}
+  .feat .dot{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--dark);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .feat b{font-size:14px;font-weight:700;color:var(--ink);display:block;}
+  .feat span{font-size:12.5px;color:var(--muted);}
+
+  .quote{background:var(--bg-alt);border-left:3px solid var(--dark);border-radius:0 12px 12px 0;padding:16px 20px;font-size:14px;color:#3a3a3a;font-style:italic;margin-top:6px;}
+
+  /* etapa chip */
+  .etapa-chip{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b6256;background:var(--card);border-radius:999px;padding:6px 14px;margin-bottom:14px;}
+  .etapa-chip.dark{background:var(--dark);color:var(--gold);}
+
+  /* timeline das etapas */
+  .timeline{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:6px;}
+  .tl{background:var(--bg-alt);border:1px solid var(--line);border-radius:16px;padding:20px 18px;display:flex;flex-direction:column;gap:9px;position:relative;}
+  .tl .tln{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--dark);align-self:flex-start;padding:4px 11px;border-radius:999px;}
+  .tl.now .tln{background:var(--green);}
+  .tl b{font-size:16px;}
+  .tl .tlp{font-size:13px;font-weight:800;color:var(--ink);}
+  .tl p{font-size:12px;line-height:1.45;}
+
+  /* mockups */
+  .browser{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 14px 40px rgba(26,22,19,.06);}
+  .browser-bar{background:var(--bg-alt);border-bottom:1px solid var(--line);padding:9px 14px;display:flex;align-items:center;gap:6px;}
+  .browser-bar i{width:10px;height:10px;border-radius:50%;background:#d8d2c8;display:block;}
+  .browser-bar .url{margin-left:12px;background:#fff;border:1px solid var(--line);border-radius:9999px;font-size:10.5px;color:var(--muted);padding:4px 14px;}
+  .mock-pad{padding:18px;}
+
+  /* mock app (painel) */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:12px;}
+  .kpi{background:var(--bg-alt);border:1px solid var(--line);border-radius:11px;padding:12px 12px;}
+  .kpi b{display:block;font-size:18px;font-weight:800;letter-spacing:-.02em;}
+  .kpi span{display:block;font-size:9.5px;color:var(--muted);margin-top:3px;}
+  .mtable{width:100%;border-collapse:collapse;font-size:11px;}
+  .mtable th{text-align:left;font-size:8.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:0 8px 7px;border-bottom:1px solid var(--line);}
+  .mtable td{padding:8px;border-bottom:1px solid var(--line);}
+  .mtable tr:last-child td{border-bottom:none;}
+  .pill{font-size:9px;font-weight:700;padding:3px 9px;border-radius:999px;}
+  .pill.g{background:#e3efe3;color:#2f5d34;} .pill.y{background:#f3ead0;color:#7a5a16;} .pill.r{background:#f4ddd9;color:#8a3526;} .pill.d{background:var(--dark);color:var(--gold);}
+
+  /* kanban mock */
+  .kan{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+  .kcol{background:var(--bg-alt);border:1px solid var(--line);border-radius:10px;padding:8px;}
+  .kcol h4{font-size:9.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:8px;}
+  .kc{background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px;margin-bottom:7px;}
+  .kc b{font-size:10px;display:block;}
+  .kc span{font-size:9px;color:var(--muted);}
+
+  /* lista de receita */
+  .rev{display:flex;gap:13px;align-items:flex-start;background:var(--bg-alt);border:1px solid var(--line);border-radius:15px;padding:18px 18px;margin-bottom:12px;}
+  .rev .ic{flex:0 0 auto;width:40px;height:40px;border-radius:11px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--dark);}
+  .rev b{font-size:15px;display:block;margin-bottom:3px;}
+  .rev p{font-size:12.5px;line-height:1.5;}
+
+  /* steps preço */
+  .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+  .step{background:var(--bg-alt);border:1px solid var(--line);border-radius:16px;padding:20px 18px;display:flex;flex-direction:column;gap:8px;}
+  .step .lbl{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#fff;background:var(--dark);align-self:flex-start;padding:4px 11px;border-radius:9999px;}
+  .step .lbl.now{background:var(--green);}
+  .step b{font-size:15px;}
+  .step .price{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-0.02em;line-height:1.05;}
+  .step .price em{display:block;font-style:normal;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:4px;}
+  .step .price small{display:block;font-size:10px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:5px;line-height:1.4;}
+  .step p{font-size:12px;line-height:1.48;}
+
+  .cta{background:var(--dark);border-radius:20px;padding:32px 30px;color:#FAFAF8;display:flex;flex-direction:column;gap:12px;}
+  .cta h2{color:#FAFAF8;font-size:26px;}
+  .cta p{color:#bcb2a4;font-size:14.5px;}
+  .cta .pill2{align-self:flex-start;background:#FAFAF8;color:var(--dark);font-weight:700;font-size:14px;padding:12px 24px;border-radius:9999px;margin-top:4px;}
+
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--bg-alt);margin-top:4px;}
+  .stat{padding:20px 16px;border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat b{display:block;font-size:24px;font-weight:800;letter-spacing:-0.02em;}
+  .stat span{font-size:11.5px;color:var(--muted);margin-top:5px;display:block;}
+
+  .foot-note{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
+  .next li{list-style:none;display:flex;gap:13px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line);}
+  .next li:last-child{border-bottom:none;}
+  .next .n{flex:0 0 auto;width:28px;height:28px;border-radius:8px;background:var(--card);color:var(--dark);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .next b{font-size:14.5px;display:block;}
+  .next span{font-size:12.5px;color:var(--muted);}
+
+  .tagline{display:inline-block;font-size:11px;font-weight:600;color:var(--green);background:#eef5ee;border:1px solid #cfe3cf;border-radius:999px;padding:5px 13px;}
+</style>
+</head>
+<body>
+
+<!-- ============ CAPA ============ -->
+<section class="page cover">
+  <div class="pad">
+    <div>
+      <div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div>
+      <div class="cover-rule"></div>
+    </div>
+    <div>
+      <div class="eyebrow">Apresentação do produto</div>
+      <h1>Um produto<br>que cresce junto<br>com a imobiliária</h1>
+      <p class="sub">Não é um site solto: é uma plataforma que começa enxuta, no ar em uma semana, e vai ganhando gestão de imóveis, condomínios, vendas e marketing conforme o negócio anda. Cada etapa já existe funcionando, pronta pra mostrar.</p>
+    </div>
+    <div class="cover-foot">
+      <span>Da vitrine à plataforma completa · em 3 etapas</span>
+      <span>Alto da Lapa · Vila Leopoldina · Pompeia · Perdizes · Lapa</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · O PONTO DE PARTIDA ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">02 · O ponto de partida</div></div>
+    <div class="eyebrow">Por que agora</div>
+    <h2 class="title">Vocês já têm o mais difícil.<br>Falta a parte digital.</h2>
+    <p class="section-intro lead">O principal a parceria já tem: registro no CRECI, ponto no Alto da Lapa e conhecimento de uma das melhores regiões de São Paulo. O que falta é o que faz o cliente encontrar vocês, confiar e chegar sozinho. É isso que este produto resolve, sem precisar gastar uma fortuna pra começar.</p>
+
+    <div class="grid3" style="margin-top:4px;">
+      <div class="card"><div class="num">1</div><h3>Registro e ponto</h3><p>CRECI e espaço físico no Alto da Lapa, numa das regiões mais valorizadas da cidade.</p></div>
+      <div class="card"><div class="num">2</div><h3>Conhecimento de bairro</h3><p>Alto da Lapa, Vila Leopoldina, Pompeia, Perdizes e Lapa. Saber a região de cor é o que vale ouro.</p></div>
+      <div class="card"><div class="num">3</div><h3>O que falta</h3><p>Hoje é tudo boca a boca. Sem presença digital, muito cliente nem sabe que vocês existem.</p></div>
+    </div>
+
+    <div style="margin-top:22px;">
+      <div class="eyebrow">As três frentes do negócio</div>
+      <div class="grid3">
+        <div class="card"><h3>Venda</h3><p>A comissão maior, a cada negócio fechado.</p></div>
+        <div class="card"><h3>Locação</h3><p>Aluguel de apartamentos, casas e salas comerciais.</p></div>
+        <div class="card"><h3>Administração de condomínios</h3><p>A renda fixa mensal que cobre as despesas.</p></div>
+      </div>
+    </div>
+
+    <div class="quote" style="margin-top:20px;">"Hoje é tudo muito boca a boca. Para alavancar e crescer, a gente precisa aparecer." Foi disso que partimos.</div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>02</span></div>
+  </div>
+</section>
+
+<!-- ============ 03 · A IDEIA CENTRAL (3 ETAPAS) ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">03 · A ideia central</div></div>
+    <div class="eyebrow">Como o produto funciona</div>
+    <h2 class="title">Começa pequeno, cresce em etapas,<br>sem refazer nada</h2>
+    <p class="section-intro">A plataforma é uma só. Ela nasce como uma vitrine simples e vai ligando novas funções conforme o negócio justifica. Cada etapa só entra quando faz sentido, e o que já está pronto continua valendo. É o caminho mais pé no chão pra quem está começando do zero.</p>
+
+    <div class="timeline">
+      <div class="tl now">
+        <span class="tln">Começa aqui</span>
+        <b>Etapa 1 · Vitrine</b>
+        <div class="tlp">O site no ar</div>
+        <p>A vitrine de imóveis com busca, WhatsApp e a triagem de leads. Entrega em cerca de uma semana.</p>
+      </div>
+      <div class="tl">
+        <span class="tln">Quando crescer</span>
+        <b>Etapa 2 · Gestão</b>
+        <div class="tlp">Backoffice</div>
+        <p>Painel dos imóveis, administração de condomínios com inadimplência e mapa interativo.</p>
+      </div>
+      <div class="tl">
+        <span class="tln">Lá na frente</span>
+        <b>Etapa 3 · Plataforma</b>
+        <div class="tlp">Tudo integrado</div>
+        <p>Funil de vendas, análise de renda, assinatura digital e gerador de marketing.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;" class="card">
+      <h3 style="font-size:15px;">Tudo isto já está funcionando como demonstração</h3>
+      <p style="font-size:13px;margin-top:6px;">Cada etapa tem uma versão navegável, com dados de exemplo, que dá pra abrir no computador ou no celular. Uma barra no topo do site liga e desliga as etapas, pra mostrar o produto crescendo na frente do cliente. Não é desenho de tela: é o produto rodando.</p>
+    </div>
+
+    <div class="quote" style="margin-top:18px;">"Para quem está começando do zero, precisa ser o mínimo dos mínimos, só pra ter algo rodando." O MVP custa cerca de 30 a 40% de uma plataforma grande e já começa a operar.</div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>03</span></div>
+  </div>
+</section>
+
+<!-- ============ 04 · ETAPA 1 VITRINE ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">04 · Etapa 1</div></div>
+    <span class="etapa-chip">Etapa 1 · Vitrine (MVP)</span>
+    <h2 class="title">O site que mostra os imóveis<br>e traz cliente pra vocês</h2>
+    <p class="section-intro">A vitrine da imobiliária na internet. Quem procura imóvel na região acha vocês no Google ou no Instagram, vê as opções com foto e preço, filtra por bairro, tipo e valor, e fala na hora pelo WhatsApp.</p>
+
+    <div class="browser">
+      <div class="browser-bar"><i></i><i></i><i></i><span class="url">suaimobiliaria.com.br</span></div>
+      <div class="mock-pad" style="background:var(--bg);">
+        <div style="display:flex;gap:8px;margin-bottom:14px;">
+          <div style="flex:1;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 12px;font-size:11px;color:var(--muted);">Comprar</div>
+          <div style="flex:1;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 12px;font-size:11px;color:var(--muted);">Bairro</div>
+          <div style="flex:1;background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 12px;font-size:11px;color:var(--muted);">Até R$ 1,5 mi</div>
+          <div style="background:var(--dark);color:#fff;border-radius:9px;padding:8px 16px;font-size:11px;font-weight:600;">Buscar</div>
+        </div>
+        <div class="grid3">
+          <div style="background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;"><div style="height:54px;background:linear-gradient(135deg,#e7e1d7,#d9d2c6);"></div><div style="padding:10px;"><b style="font-size:13px;">R$ 890.000</b><div style="font-size:10px;color:var(--muted);margin-top:2px;">Apto · Pompeia · 2 dorm</div></div></div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;"><div style="height:54px;background:linear-gradient(135deg,#e4ddd0,#d3cabb);"></div><div style="padding:10px;"><b style="font-size:13px;">R$ 1.450.000</b><div style="font-size:10px;color:var(--muted);margin-top:2px;">Casa · Alto da Lapa</div></div></div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;"><div style="height:54px;background:linear-gradient(135deg,#eae3d8,#dcd4c7);"></div><div style="padding:10px;"><b style="font-size:13px;">R$ 3.200/mês</b><div style="font-size:10px;color:var(--muted);margin-top:2px;">Studio · V. Leopoldina</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:18px;">
+      <div class="card"><h3>Busca com filtros</h3><p>Por finalidade, bairro, tipo, quartos e faixa de preço. O cliente acha o que quer em segundos.</p></div>
+      <div class="card"><h3>Contato no WhatsApp</h3><p>Cada imóvel e cada página levam direto pra conversa, com a mensagem já preenchida.</p></div>
+      <div class="card"><h3>Cara de confiança</h3><p>Visual sóbrio e profissional, que passa seriedade desde o primeiro clique.</p></div>
+    </div>
+
+    <p style="margin-top:18px;font-size:13px;max-width:94%;">Esse é o site real que já foi montado e está rodando. Pronto pra receber as fotos e os dados dos imóveis de vocês.</p>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>04</span></div>
+  </div>
+</section>
+
+<!-- ============ 05 · ETAPA 1 FILTRO DE LEADS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">05 · Etapa 1</div></div>
+    <span class="etapa-chip">Etapa 1 · Vitrine (MVP)</span>
+    <h2 class="title">Mais clientes certos,<br>menos tempo perdido</h2>
+    <p class="section-intro">Não adianta só receber muita mensagem. Antes de chegar em vocês, o site faz uma triagem: pergunta o que a pessoa procura e quanto pretende investir. Quem está dentro do perfil vai direto pra corretora. Quem está fora é encaminhado pra imóveis na faixa dele, sem ocupar o atendimento de venda.</p>
+
+    <div class="grid2" style="gap:14px;">
+      <div class="card" style="background:#eef5ee;border-color:#cfe3cf;">
+        <span class="pill g" style="font-size:10px;">Lead qualificado</span>
+        <h3 style="margin-top:10px;">Dentro do perfil</h3>
+        <p style="font-size:13px;">"Seu perfil bate com o imóvel. A corretora recebe seu contato agora." Vai direto pro WhatsApp da equipe.</p>
+      </div>
+      <div class="card" style="background:#f6ece9;border-color:#e6cdc6;">
+        <span class="pill r" style="font-size:10px;">Fora do perfil</span>
+        <h3 style="margin-top:10px;">Orçamento abaixo</h3>
+        <p style="font-size:13px;">É direcionado pra opções na faixa dele e não toma o tempo da venda. É o filtro economizando o dia da equipe.</p>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat"><b>2 a 3%</b><span>Conversão média no digital. A maioria dos contatos não vira negócio.</span></div>
+      <div class="stat"><b>10 → 4 → 0</b><span>"Recebia 10 contatos, marcava 4 reuniões e quase ninguém aparecia."</span></div>
+      <div class="stat"><b>+ tempo</b><span>Com o filtro, a equipe fala primeiro com quem tem real chance de fechar.</span></div>
+    </div>
+
+    <div class="quote" style="margin-top:20px;">"O que mais prejudica o operacional do dia a dia é perder tempo com tarefa que não traz resultado." O filtro corta esse desperdício logo na entrada, mantendo o atendimento humano pra quem importa.</div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>05</span></div>
+  </div>
+</section>
+
+<!-- ============ 06 · ETAPA 2 GESTÃO (visão) ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">06 · Etapa 2</div></div>
+    <span class="etapa-chip">Etapa 2 · Gestão</span>
+    <h2 class="title">Quando o movimento cresce,<br>entra a gestão</h2>
+    <p class="section-intro">A segunda etapa é o backoffice: o lugar onde a imobiliária controla a operação por dentro. Três frentes, a partir da mesma plataforma.</p>
+
+    <div class="grid3" style="margin-top:4px;">
+      <div class="card"><div class="num">1</div><h3>Painel dos imóveis</h3><p>A carteira inteira num lugar só: o que está ativo, reservado e vendido, com os valores e o total.</p></div>
+      <div class="card"><div class="num">2</div><h3>Condomínios</h3><p>A renda fixa mensal: inadimplência por unidade, acordos e comunicados aos moradores.</p></div>
+      <div class="card"><div class="num">3</div><h3>Mapa interativo</h3><p>O cliente vê onde fica cada imóvel e fica mais tempo no site, no estilo das grandes plataformas.</p></div>
+    </div>
+
+    <div class="browser" style="margin-top:20px;">
+      <div class="browser-bar"><i></i><i></i><i></i><span class="url">suaimobiliaria.com.br/painel</span></div>
+      <div class="mock-pad">
+        <div class="kpis">
+          <div class="kpi"><b>12</b><span>Na carteira</span></div>
+          <div class="kpi"><b>8</b><span>Ativos</span></div>
+          <div class="kpi"><b>2</b><span>Reservados</span></div>
+          <div class="kpi"><b>R$ 9,1 mi</b><span>VGV ativo</span></div>
+        </div>
+        <table class="mtable">
+          <thead><tr><th>Imóvel</th><th>Valor</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Cobertura · V. Leopoldina</td><td>R$ 3.450.000</td><td><span class="pill g">Ativo</span></td></tr>
+            <tr><td>Studio · V. Leopoldina</td><td>R$ 3.200/mês</td><td><span class="pill y">Reservado</span></td></tr>
+            <tr><td>Sobrado · Alto da Lapa</td><td>R$ 2.890.000</td><td><span class="pill d">Vendido</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>06</span></div>
+  </div>
+</section>
+
+<!-- ============ 07 · ETAPA 2 CONDOMÍNIOS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">07 · Etapa 2</div></div>
+    <span class="etapa-chip">Etapa 2 · Gestão</span>
+    <h2 class="title">A renda que cai todo mês:<br>administração de condomínios</h2>
+    <p class="section-intro">Diferente da venda, que é esporádica, o condomínio não para de chegar. Pegar a administração de um ou dois prédios da região já ajuda a cobrir as despesas fixas. A plataforma controla a inadimplência de cada unidade, registra acordos e envia comunicados.</p>
+
+    <div class="browser">
+      <div class="browser-bar"><i></i><i></i><i></i><span class="url">suaimobiliaria.com.br/condominio</span></div>
+      <div class="mock-pad">
+        <div class="kpis">
+          <div class="kpi"><b>83%</b><span>Adimplência</span></div>
+          <div class="kpi"><b>R$ 5.880</b><span>Inadimplência</span></div>
+          <div class="kpi"><b>3</b><span>Em atraso</span></div>
+          <div class="kpi"><b>R$ 23.520/mês</b><span>Receita do prédio</span></div>
+        </div>
+        <table class="mtable">
+          <thead><tr><th>Unid.</th><th>Morador</th><th>Situação</th><th>Ação</th></tr></thead>
+          <tbody>
+            <tr><td>44</td><td>Rogério Salles</td><td><span class="pill r">4 meses · R$ 3.920</span></td><td style="color:var(--muted);font-size:10px;">Fazer acordo</td></tr>
+            <tr><td>21</td><td>Carlos Menezes</td><td><span class="pill r">2 meses · R$ 1.960</span></td><td style="color:var(--muted);font-size:10px;">Fazer acordo</td></tr>
+            <tr><td>12</td><td>Ana Prado</td><td><span class="pill g">Em dia</span></td><td style="color:var(--green);font-size:10px;">ok</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="cta" style="margin-top:20px;">
+      <h2>Renda fixa muda o jogo</h2>
+      <p>Enquanto as vendas, maiores, vêm por cima, a administração de condomínios paga as contas do mês. É a base que dá fôlego pra imobiliária crescer com segurança.</p>
+    </div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>07</span></div>
+  </div>
+</section>
+
+<!-- ============ 08 · ETAPA 3 PLATAFORMA (visão) ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">08 · Etapa 3</div></div>
+    <span class="etapa-chip dark">Etapa 3 · Plataforma completa</span>
+    <h2 class="title">A imobiliária inteira<br>numa plataforma só</h2>
+    <p class="section-intro">A etapa final integra tudo o que tira tempo e dinheiro da operação. Quatro ferramentas que, juntas, deixam a imobiliária rodando no estilo das grandes plataformas, mantendo o atendimento humano no centro.</p>
+
+    <div class="grid2" style="gap:0 40px;margin-top:4px;">
+      <div>
+        <div class="feat"><span class="dot">+</span><div><b>Funil de vendas</b><span>Cada lead do primeiro contato ao fechamento, num quadro só.</span></div></div>
+        <div class="feat"><span class="dot">+</span><div><b>Análise de renda</b><span>Valida pelo CPF, via Open Finance, se o imóvel cabe no bolso do cliente.</span></div></div>
+      </div>
+      <div>
+        <div class="feat"><span class="dot">+</span><div><b>Assinatura digital</b><span>Contrato lido e assinado pela plataforma, com validade via gov.br.</span></div></div>
+        <div class="feat"><span class="dot">+</span><div><b>Marketing automático</b><span>Post e legenda prontos pro Instagram a partir de qualquer imóvel.</span></div></div>
+      </div>
+    </div>
+
+    <div class="browser" style="margin-top:18px;">
+      <div class="browser-bar"><i></i><i></i><i></i><span class="url">suaimobiliaria.com.br/crm</span></div>
+      <div class="mock-pad">
+        <div class="kan">
+          <div class="kcol"><h4>Novo lead</h4><div class="kc"><b>Fernanda A.</b><span>R$ 1,9 mi</span></div></div>
+          <div class="kcol"><h4>Em contato</h4><div class="kc"><b>Ricardo B.</b><span>R$ 2,2 mi</span></div></div>
+          <div class="kcol"><h4>Visita</h4><div class="kc"><b>Patrícia G.</b><span>R$ 3,5 mil</span></div></div>
+          <div class="kcol"><h4>Proposta</h4><div class="kc"><b>Eduardo T.</b><span>R$ 3,5 mi</span></div></div>
+          <div class="kcol"><h4>Fechado</h4><div class="kc"><b>Joaquim R.</b><span>R$ 2,9 mi</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>08</span></div>
+  </div>
+</section>
+
+<!-- ============ 09 · ETAPA 3 DESTAQUES ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">09 · Etapa 3</div></div>
+    <span class="etapa-chip dark">Etapa 3 · Plataforma completa</span>
+    <h2 class="title">As ferramentas que economizam<br>tempo e fecham negócio</h2>
+
+    <div class="grid2" style="gap:14px;margin-top:6px;">
+      <div class="card"><h3>Análise de renda · Open Finance</h3><p style="font-size:13px;">Com o CPF, a plataforma confere a renda do cliente e mostra na hora se a parcela cabe no orçamento. Evita seguir uma negociação que não vai fechar.</p></div>
+      <div class="card"><h3>Assinatura digital · gov.br</h3><p style="font-size:13px;">Acaba a papelada. O cliente lê e assina o contrato pela tela, sem rubricar página por página, com validade jurídica.</p></div>
+      <div class="card"><h3>Funil de vendas</h3><p style="font-size:13px;">Todo lead que chega do site entra no funil e caminha até a venda. Mostra quanto valor está em cada etapa da negociação.</p></div>
+      <div class="card"><h3>Marketing e conteúdo</h3><p style="font-size:13px;">Escolhe o imóvel e o sistema monta o post pro Instagram: imagem, legenda e hashtags. Presença digital no ar sem depender de designer.</p></div>
+    </div>
+
+    <p style="margin-top:20px;font-size:13px;max-width:94%;">Nada disso precisa entrar agora. A etapa 3 mostra até onde o produto vai e que ele acompanha a imobiliária à medida que ela ganha tamanho, sem nunca jogar fora o que já foi feito.</p>
+    <div class="quote" style="margin-top:14px;">"A tecnologia ajuda a crescer, mas o atendimento humano não pode faltar." Toda automação aqui serve pra liberar tempo da equipe, não pra afastar o cliente.</div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>09</span></div>
+  </div>
+</section>
+
+<!-- ============ 10 · INVESTIMENTO ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">10 · O investimento</div></div>
+    <div class="eyebrow">Começar do jeito certo</div>
+    <h2 class="title">Cada etapa tem seu custo.<br>Sobe de nível quando o negócio pede.</h2>
+    <p class="section-intro">Ninguém precisa gastar uma fortuna pra começar. Dá pra colocar a vitrine no ar já, e ir crescendo conforme o negócio se paga. Os valores abaixo são referência de mercado pra cada etapa. Os finais vão na proposta que acompanha esta apresentação.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="lbl now">Começa aqui</span>
+        <b>Etapa 1 · Vitrine</b>
+        <div class="price"><em>a partir de</em>R$ 15 mil<small>Entrega em cerca de uma semana</small></div>
+        <p>A vitrine com busca, WhatsApp e triagem de leads. O suficiente pra começar a aparecer e atender.</p>
+      </div>
+      <div class="step">
+        <span class="lbl">MVP da plataforma</span>
+        <b>Etapa 2 · Gestão</b>
+        <div class="price"><em>referência</em>R$ 45 a 60 mil<small>Cerca de 30 a 40% da plataforma, em ~30 dias</small></div>
+        <p>Painel, administração de condomínios e mapa. Estrutura enxuta e escalável pra começar a operar.</p>
+      </div>
+      <div class="step">
+        <span class="lbl">Lá na frente</span>
+        <b>Etapa 3 · Plataforma</b>
+        <div class="price"><em>referência</em>R$ 130 a 250 mil<small>Conforme a escala: zona oeste ou São Paulo</small></div>
+        <p>Tudo integrado, no estilo das grandes plataformas. Construída aos poucos, sem aperto.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3 style="font-size:15px;">Como funciona a cobrança</h3>
+      <p style="font-size:13px;margin-top:6px;">Sem mensalidade fixa alta que pesa antes do negócio andar. A manutenção é proporcional ao movimento: uma comissão sobre o que for investido em anúncios e ferramentas, e só depois da plataforma validada. Quando a empresa gasta mais, é porque está faturando mais.</p>
+    </div>
+    <div class="quote" style="margin-top:14px;">"Se eu faturar 100, te pago 10 na boa por mês. Agora, mensalidade fixa sem garantia de retorno, não dá." É exatamente o modelo proporcional desta proposta.</div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>10</span></div>
+  </div>
+</section>
+
+<!-- ============ 11 · ENTREGA ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">11 · A entrega</div></div>
+    <div class="eyebrow">Como o trabalho acontece</div>
+    <h2 class="title">Rápido no ar, validado<br>no mundo real</h2>
+    <p class="section-intro">A força do produto está na agilidade. Em vez de meses fechado em desenvolvimento, a plataforma vai pro ar cedo e é testada com clientes de verdade, que é o que realmente mostra o que funciona.</p>
+
+    <div class="grid3" style="margin-top:4px;">
+      <div class="card"><div class="num">●</div><h3>No ar em ~30 dias</h3><p>Qualquer etapa decidida fica pronta pra começar os testes em cerca de 30 dias.</p></div>
+      <div class="card"><div class="num">●</div><h3>Prova de fogo</h3><p>Os meses seguintes são de uso real e ajustes. Cliente de verdade valida melhor que simulação.</p></div>
+      <div class="card"><div class="num">●</div><h3>Escalável</h3><p>As funções ligam e desligam conforme a necessidade. Sem custo extra pelo que não está em uso.</p></div>
+    </div>
+
+    <div style="margin-top:22px;">
+      <div class="rev"><div class="ic">1</div><div><b>Primeiro a função, depois o brilho</b><p>O foco inicial é resolver a dor: trazer e filtrar cliente, organizar a operação. Refinamento visual vem por último.</p></div></div>
+      <div class="rev"><div class="ic">2</div><div><b>Uma base que melhora sozinha</b><p>O produto é construído sobre uma base que evolui. Novas funções entram sem refazer o que já existe.</p></div></div>
+      <div class="rev"><div class="ic">3</div><div><b>Quanto mais informação, melhor o desenho</b><p>Com a situação financeira e a meta de 6, 12 e 24 meses, dá pra dimensionar a solução certa pro momento de vocês.</p></div></div>
+    </div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto</span><span>11</span></div>
+  </div>
+</section>
+
+<!-- ============ 12 · PRÓXIMOS PASSOS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead"><div class="logo-txt"><b>Sua</b> <span>Imobiliária</span></div><div class="pnum">12 · Próximos passos</div></div>
+    <div class="eyebrow">A partir daqui</div>
+    <h2 class="title">O caminho até o site<br>no ar é curto</h2>
+    <p class="section-intro">Com a parceria fechada e as fotos em mãos, dá pra colocar a imobiliária na internet em pouco tempo. A etapa 1 entra primeiro; o resto cresce a partir dela.</p>
+
+    <ul class="next">
+      <li><span class="n">1</span><div><b>Definir nome e marca</b><span>Nome, cores e logo. O nome usado nesta demonstração é provisório.</span></div></li>
+      <li><span class="n">2</span><div><b>Reunir os imóveis</b><span>Fotos, valores e informações dos primeiros imóveis pra colocar no ar.</span></div></li>
+      <li><span class="n">3</span><div><b>Levantar números</b><span>Situação financeira e meta de 6, 12 e 24 meses, pra desenhar a etapa certa.</span></div></li>
+      <li><span class="n">4</span><div><b>Publicar e divulgar</b><span>Site no ar com endereço próprio, ligado ao Google e às redes sociais.</span></div></li>
+    </ul>
+
+    <div class="cta" style="margin-top:22px;">
+      <span class="tagline" style="align-self:flex-start;">Demonstração funcional já disponível</span>
+      <h2>Vamos tirar do papel?</h2>
+      <p>As três etapas já existem rodando como demonstração, prontas pra mostrar no celular. O próximo passo é uma conversa sobre marca, imóveis e prazos pra colocar a primeira etapa no ar.</p>
+      <span class="pill2">Falar com a equipe</span>
+    </div>
+    <div class="foot-note"><span>Sua Imobiliária · Apresentação do produto · Feito por Felipe</span><span>12</span></div>
+  </div>
+</section>
+
+</body>
+</html>

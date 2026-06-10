@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Leopoldina Imóveis | Guia do site, por dentro do que construímos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4F1EC;
+    --bg-alt:#FAFAF8;
+    --dark:#1A1613;
+    --ink:#1A1A1A;
+    --muted:#6B6B6B;
+    --line:#E3DFD7;
+    --card:#EAE6DF;
+    --green:#5a7d5a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;}
+
+  @page{size:210mm 297mm;margin:0;}
+
+  .page{
+    width:210mm;height:297mm;position:relative;overflow:hidden;
+    background:var(--bg);display:flex;flex-direction:column;break-after:page;
+  }
+  .page:last-child{break-after:auto;}
+  .pad{padding:22mm 20mm;flex:1;display:flex;flex-direction:column;}
+
+  h1,h2,h3{font-weight:800;letter-spacing:-0.02em;line-height:1.0;color:var(--ink);}
+  .eyebrow{
+    display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.18em;
+    color:var(--muted);border:1px solid var(--line);padding:6px 14px;border-radius:9999px;
+    background:var(--bg-alt);margin-bottom:16px;
+  }
+  p{color:var(--muted);font-size:13.5px;}
+  .lead{font-size:15.5px;color:#3a3a3a;}
+
+  /* ---------- CAPA ---------- */
+  .cover{background:var(--dark);color:#FAFAF8;}
+  .cover .pad{padding:26mm 22mm;justify-content:space-between;}
+  .cover .eyebrow{color:#cfc6ba;border-color:rgba(255,255,255,.18);background:transparent;}
+  .cover h1{color:#FAFAF8;font-size:50px;line-height:1.03;letter-spacing:-0.03em;}
+  .cover .sub{color:#bcb2a4;font-size:16.5px;max-width:86%;margin-top:22px;}
+  .logo-mark{display:inline-flex;}
+  .logo-txt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1;}
+  .logo-txt b{font-weight:600;font-size:26px;line-height:.9;letter-spacing:-0.015em;color:#FAFAF8;text-transform:none;}
+  .logo-txt span{font-weight:500;font-size:10px;letter-spacing:0.36em;text-transform:uppercase;color:#bcb2a4;margin-left:2px;}
+  .cover-foot{display:flex;justify-content:space-between;align-items:flex-end;color:#8f8576;font-size:12px;}
+  .cover-rule{width:60px;height:3px;background:#FAFAF8;border-radius:3px;margin:30px 0 0;}
+
+  /* ---------- HEADER interno ---------- */
+  .phead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:24px;}
+  .phead .logo-txt b{color:var(--ink);font-size:18px;}
+  .phead .logo-txt span{color:var(--muted);font-size:7.5px;letter-spacing:0.34em;}
+  .phead .pnum{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+
+  h2.title{font-size:30px;line-height:1.07;margin-bottom:12px;}
+  .section-intro{font-size:14.5px;max-width:94%;margin-bottom:22px;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+
+  .card{background:var(--bg-alt);border:1px solid var(--line);border-radius:16px;padding:20px 18px;}
+  .card h3{font-size:16px;margin-bottom:8px;letter-spacing:-0.01em;}
+  .card p{font-size:12.5px;line-height:1.55;}
+  .card .num{font-size:12px;font-weight:800;color:var(--dark);background:var(--card);width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+
+  /* ---------- Anatomia (o que / onde / por quê) ---------- */
+  .anat{display:flex;flex-direction:column;}
+  .arow{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);}
+  .arow:last-child{border-bottom:none;}
+  .arow .loc{
+    flex:0 0 84px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;
+    color:#fff;background:var(--dark);border-radius:8px;padding:7px 6px;height:max-content;text-align:center;line-height:1.25;
+  }
+  .arow .body{flex:1;}
+  .arow .body b{font-size:14px;color:var(--ink);display:block;margin-bottom:3px;letter-spacing:-0.01em;}
+  .arow .body p{font-size:12.5px;line-height:1.5;}
+  .arow .body .why{color:#3a3a3a;font-size:12px;margin-top:4px;line-height:1.5;}
+  .arow .body .why em{font-style:normal;font-weight:700;color:var(--dark);}
+
+  /* ---------- Sitemap ---------- */
+  .smap{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .pagecard{background:var(--bg-alt);border:1px solid var(--line);border-radius:14px;padding:16px 16px;display:flex;flex-direction:column;gap:5px;}
+  .pagecard .tag{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:#fff;background:var(--dark);align-self:flex-start;padding:4px 9px;border-radius:9999px;margin-bottom:4px;}
+  .pagecard b{font-size:14.5px;}
+  .pagecard p{font-size:12px;line-height:1.45;}
+  .pagecard .file{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.02em;margin-top:auto;padding-top:6px;}
+
+  /* ---------- mockup navegador ---------- */
+  .browser{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;}
+  .browser-bar{background:var(--bg-alt);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;align-items:center;gap:7px;}
+  .browser-bar i{width:10px;height:10px;border-radius:50%;background:#d8d2c8;display:block;}
+  .browser-bar .url{margin-left:12px;background:#fff;border:1px solid var(--line);border-radius:9999px;font-size:10.5px;color:var(--muted);padding:5px 14px;}
+
+  .stack{display:flex;flex-direction:column;gap:8px;}
+  .layer{display:flex;align-items:center;gap:12px;background:var(--bg-alt);border:1px solid var(--line);border-radius:12px;padding:12px 14px;}
+  .layer .n{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:var(--dark);color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;}
+  .layer b{font-size:13.5px;color:var(--ink);}
+  .layer span{font-size:11.5px;color:var(--muted);display:block;}
+
+  .foot-note{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);}
+
+  .feat{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line);}
+  .feat:last-child{border-bottom:none;}
+  .feat .dot{flex:0 0 auto;width:21px;height:21px;border-radius:50%;background:var(--dark);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .feat b{font-size:13.5px;font-weight:700;color:var(--ink);display:block;}
+  .feat span{font-size:12px;color:var(--muted);}
+
+  .quote{background:var(--bg-alt);border-left:3px solid var(--dark);border-radius:0 12px 12px 0;padding:15px 20px;font-size:13.5px;color:#3a3a3a;font-style:italic;margin-top:14px;}
+
+  .note{font-size:12.5px;max-width:96%;margin-top:18px;color:#3a3a3a;}
+</style>
+</head>
+<body>
+
+<!-- ============ CAPA ============ -->
+<section class="page cover">
+  <div class="pad">
+    <div>
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="cover-rule"></div>
+    </div>
+    <div>
+      <div class="eyebrow">Guia do site · por dentro do que construímos</div>
+      <h1>Tudo que o site<br>tem, onde fica<br>e por que está ali</h1>
+      <p class="sub">Um passeio pelo site que já construímos, seção por seção. O que cada parte faz, em que lugar do site ela aparece e a razão de ter sido colocada ali. Só o que está pronto e funcionando hoje.</p>
+    </div>
+    <div class="cover-foot">
+      <span>Site-demo · versão para apresentação</span>
+      <span>Pompeia · Lapa · Alto da Lapa · Vila Leopoldina</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 — MAPA DO SITE ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">02 · Mapa do site</div>
+    </div>
+    <div class="eyebrow">Visão geral</div>
+    <h2 class="title">Cinco páginas, cada uma<br>com um trabalho a fazer</h2>
+    <p class="section-intro">Antes de entrar no detalhe, o desenho geral. O site tem cinco páginas, mais a página de cada imóvel. Cada uma existe para um momento diferente de quem está procurando imóvel: descobrir, comparar, confiar e, no fim, falar com vocês.</p>
+
+    <div class="smap">
+      <div class="pagecard">
+        <span class="tag">Início</span>
+        <b>Página inicial</b>
+        <p>A vitrine. Busca, imóveis em destaque, serviços, bairros e dúvidas. É a porta de entrada de quem chega pelo Google ou Instagram.</p>
+        <span class="file">index.html</span>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Imóveis</span>
+        <b>Lista de imóveis</b>
+        <p>Todos os imóveis com filtros e ordenação. O lugar de comparar opções com calma e achar o que cabe no bolso.</p>
+        <span class="file">imoveis.html</span>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Detalhe</span>
+        <b>Página do imóvel</b>
+        <p>Fotos, características, valores e contato de um imóvel específico. É onde a pessoa decide chamar no WhatsApp.</p>
+        <span class="file">imovel.html</span>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Quem somos</span>
+        <b>História e valores</b>
+        <p>A página que constrói confiança: 15 anos de região, jeito de trabalhar e no que a imobiliária acredita.</p>
+        <span class="file">quem-somos.html</span>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Serviços</span>
+        <b>O que a imobiliária faz</b>
+        <p>Venda, locação, administração de imóveis e de condomínios, com o passo a passo de cada serviço.</p>
+        <span class="file">servicos.html</span>
+      </div>
+      <div class="pagecard">
+        <span class="tag">Contato</span>
+        <b>Fale com a corretora</b>
+        <p>WhatsApp, telefone, e-mail, formulário e mapa. O ponto onde o visitante vira um contato de verdade.</p>
+        <span class="file">contato.html</span>
+      </div>
+    </div>
+
+    <p class="note">O mesmo cabeçalho, rodapé e botão flutuante de WhatsApp aparecem em todas as páginas. Isso dá unidade ao site e deixa o caminho para o contato sempre à mão, não importa onde a pessoa esteja.</p>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>02</span></div>
+  </div>
+</section>
+
+<!-- ============ 03 — HOME: TOPO E BUSCA ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">03 · Página inicial</div>
+    </div>
+    <div class="eyebrow">Topo da página inicial</div>
+    <h2 class="title">A primeira tela:<br>chamar e deixar buscar</h2>
+    <p class="section-intro">Os primeiros segundos decidem se a pessoa fica ou sai. Por isso o topo tem só duas coisas: uma frase que acolhe e uma busca grande, impossível de não ver.</p>
+
+    <div class="browser" style="margin-bottom:18px;">
+      <div class="browser-bar"><i></i><i></i><i></i><span class="url">leopoldinaimoveis.com.br</span></div>
+      <div class="stack" style="padding:14px;">
+        <div class="layer"><span class="n">1</span><div><b>Cabeçalho fixo</b><span>Logo, menu e botão "Anuncie seu imóvel"</span></div></div>
+        <div class="layer"><span class="n">2</span><div><b>Frase de abertura</b><span>"O imóvel certo no bairro que você ama"</span></div></div>
+        <div class="layer"><span class="n">3</span><div><b>Caixa de busca</b><span>Comprar/alugar · bairro · tipo · código</span></div></div>
+      </div>
+    </div>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="loc">Topo · fixo</div>
+        <div class="body"><b>Cabeçalho com menu e logo</b>
+          <p>A logo, o menu das cinco páginas e um botão de destaque "Anuncie seu imóvel". Fica grudado no topo enquanto a pessoa rola a página.</p>
+          <p class="why"><em>Por quê:</em> a pessoa nunca se perde e o convite para anunciar (captar imóvel novo) está sempre visível, não só no fim.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Hero · 1ª tela</div>
+        <div class="body"><b>Frase de boas-vindas</b>
+          <p>Uma frase curta e calorosa em letra grande, em vez de um texto institucional comprido.</p>
+          <p class="why"><em>Por quê:</em> passa o tom de imobiliária de bairro, próxima, e não cansa. Quem quer ler mais desce; quem quer buscar já busca.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Hero · centro</div>
+        <div class="body"><b>Caixa de busca</b>
+          <p>Filtra por comprar ou alugar, bairro, tipo de imóvel e até por código. Quem digita o código vai direto para o imóvel.</p>
+          <p class="why"><em>Por quê:</em> é o gesto que a pessoa já está acostumada a fazer em portais. Colocar a busca em primeiro lugar é dizer "o que você procura está aqui".</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>03</span></div>
+  </div>
+</section>
+
+<!-- ============ 04 — HOME: NÚMEROS E DESTAQUES ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">04 · Página inicial</div>
+    </div>
+    <div class="eyebrow">Logo abaixo da busca</div>
+    <h2 class="title">Provar valor e mostrar<br>imóvel de cara</h2>
+    <p class="section-intro">Depois da busca, dois blocos trabalham juntos: um lembra por que confiar na imobiliária; o outro já mostra imóveis bonitos para a pessoa querer clicar.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="loc">Faixa que desliza</div>
+        <div class="body"><b>Letreiro de números</b>
+          <p>Uma faixa que desliza sozinha com os números da imobiliária: 15 anos de região, mais de 500 famílias atendidas, 4,9 de avaliação, 4 bairros.</p>
+          <p class="why"><em>Por quê:</em> dá credibilidade num relance, sem texto. O movimento chama o olho e os números fazem o papel da "prova social", quem já confiou antes.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Seção destaque</div>
+        <div class="body"><b>Imóveis em destaque</b>
+          <p>Uma seleção dos imóveis mais procurados, em forma de cards com foto, preço, bairro e os números de quartos, vagas e área. Cada card tem mini galeria de fotos e um coração para favoritar.</p>
+          <p class="why"><em>Por quê:</em> mostra produto logo, não só conversa. Os favoritos deixam a pessoa montar a própria lista e voltar depois, é um motivo para ela retornar ao site.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Botão final</div>
+        <div class="body"><b>"Ver todos os imóveis"</b>
+          <p>Um botão grande que leva da home para a lista completa.</p>
+          <p class="why"><em>Por quê:</em> a home é só uma amostra. Quem se interessou precisa de um caminho óbvio para ver o resto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">Os números (15 anos, 500 famílias, 4,9) são de demonstração. Quando o site for ao ar, entram os dados reais da imobiliária. A estrutura já está pronta para recebê-los.</div>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>04</span></div>
+  </div>
+</section>
+
+<!-- ============ 05 — HOME: CATEGORIAS, SERVIÇOS, BAIRROS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">05 · Página inicial</div>
+    </div>
+    <div class="eyebrow">Meio da página inicial</div>
+    <h2 class="title">Três formas de a pessoa<br>achar o caminho dela</h2>
+    <p class="section-intro">Nem todo mundo busca igual. Um sabe que quer apartamento, outro só sabe o bairro, outro quer entender o que a imobiliária faz. Estes três blocos atendem cada um desses jeitos.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="loc">Por tipo</div>
+        <div class="body"><b>Categorias de imóvel</b>
+          <p>Quatro cartões com foto: Apartamentos, Casas, Comercial e Para alugar. Clicar já abre a lista filtrada por aquela categoria.</p>
+          <p class="why"><em>Por quê:</em> é o atalho visual de quem já sabe o que quer. Um clique e a busca está feita, sem mexer em filtro nenhum.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">O que fazemos</div>
+        <div class="body"><b>Os três serviços, em resumo</b>
+          <p>Venda e locação, administração de imóveis e administração de condomínios, cada um com um ícone e uma explicação curta. O detalhe completo fica na página de Serviços.</p>
+          <p class="why"><em>Por quê:</em> já na home a pessoa entende que a imobiliária é mais que anunciar, sem precisar abrir outra página para descobrir.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Onde atuamos</div>
+        <div class="body"><b>Bairros de atuação</b>
+          <p>Cartões de Pompeia, Lapa, Alto da Lapa e Vila Leopoldina. Cada um leva à lista de imóveis daquele bairro.</p>
+          <p class="why"><em>Por quê:</em> reforça o posicionamento de "imobiliária que conhece a região de perto" e ajuda quem busca pensando primeiro no bairro, não no tipo de imóvel.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">Esse trio cobre os três jeitos de procurar: pelo tipo de imóvel, pelo serviço que a pessoa precisa e pelo bairro onde quer morar. Ninguém fica sem um caminho.</p>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>05</span></div>
+  </div>
+</section>
+
+<!-- ============ 06 — HOME: FAQ, CTA, RODAPÉ ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">06 · Página inicial</div>
+    </div>
+    <div class="eyebrow">Fim da página inicial</div>
+    <h2 class="title">Tirar a última dúvida<br>e chamar para a conversa</h2>
+    <p class="section-intro">No fim da página, quem rolou até aqui está quase convencido. Falta responder o que ainda trava e dar o empurrão para o contato.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="loc">Dúvidas</div>
+        <div class="body"><b>Perguntas frequentes</b>
+          <p>Seis perguntas que abrem e fecham ao clicar: se cobra para anunciar, quais bairros, se cuidam da papelada, como funciona a administração, e por aí vai.</p>
+          <p class="why"><em>Por quê:</em> responde de graça as dúvidas que fariam a pessoa desistir ou abrir um chamado só para perguntar. Menos pergunta repetida, mais contato pronto para fechar.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Chamada</div>
+        <div class="body"><b>Faixa de chamada (CTA)</b>
+          <p>Uma faixa escura "Quer vender ou alugar seu imóvel?" com botão para o contato.</p>
+          <p class="why"><em>Por quê:</em> todo final de página precisa de uma saída clara. Aqui o foco é captar imóvel (quem tem imóvel para vender ou alugar), que é o que alimenta o catálogo.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Rodapé</div>
+        <div class="body"><b>Rodapé com contato e links</b>
+          <p>Endereço, telefone, e-mail, horário de atendimento e atalhos para imóveis e bairros. Aparece igual em todas as páginas.</p>
+          <p class="why"><em>Por quê:</em> é onde a pessoa procura o endereço e o telefone "de verdade". Ter horário e endereço também ajuda o site a aparecer melhor no Google.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Flutuante</div>
+        <div class="body"><b>Botão de WhatsApp flutuante</b>
+          <p>Um botão verde de WhatsApp que fica sempre no canto da tela, em todas as páginas.</p>
+          <p class="why"><em>Por quê:</em> o brasileiro resolve no WhatsApp. Não importa onde a pessoa esteja no site, falar com vocês está sempre a um toque de distância.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>06</span></div>
+  </div>
+</section>
+
+<!-- ============ 07 — PÁGINA IMÓVEIS (LISTA) ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">07 · Lista de imóveis</div>
+    </div>
+    <div class="eyebrow">Página "Imóveis"</div>
+    <h2 class="title">O lugar de comparar<br>com calma</h2>
+    <p class="section-intro">Quando a pessoa quer ver tudo e ir afunilando, ela cai aqui. É a página que mais se parece com um portal, mas enxuta e fácil.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="loc">Topo · filtros</div>
+        <div class="body"><b>Barra de filtros</b>
+          <p>Finalidade, tipo, bairro, número de quartos e preço máximo. A lista se atualiza na hora, sem precisar recarregar.</p>
+          <p class="why"><em>Por quê:</em> deixa a pessoa montar a busca do jeito dela e ver só o que cabe no orçamento. Filtrar por preço evita frustração com imóvel fora de alcance.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Acima da lista</div>
+        <div class="body"><b>Contador e ordenação</b>
+          <p>Mostra "X imóveis encontrados" e deixa ordenar por menor preço, maior preço ou maior área.</p>
+          <p class="why"><em>Por quê:</em> dá a sensação de catálogo cheio e controle. Cada um organiza pelo que importa: uns olham preço, outros tamanho.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Vindo da home</div>
+        <div class="body"><b>Filtro já aplicado pelo link</b>
+          <p>Quem clica em "Casas" ou em "Pompeia" na home chega aqui com o filtro já marcado.</p>
+          <p class="why"><em>Por quê:</em> respeita a escolha que a pessoa já fez. Ela não refaz o trabalho, vê na hora o resultado do que clicou.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Fim da página</div>
+        <div class="body"><b>"Não achou o que procurava?"</b>
+          <p>Uma faixa convidando a falar com a corretora, dizendo que há imóveis que ainda não estão no site.</p>
+          <p class="why"><em>Por quê:</em> nem todo imóvel está publicado. Em vez de a pessoa sair de mãos vazias, ela é convidada a contar o que quer, o que vira lead.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>07</span></div>
+  </div>
+</section>
+
+<!-- ============ 08 — PÁGINA DO IMÓVEL ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">08 · Página do imóvel</div>
+    </div>
+    <div class="eyebrow">Detalhe de cada imóvel</div>
+    <h2 class="title">Onde a pessoa decide<br>chamar no WhatsApp</h2>
+    <p class="section-intro">É a página mais importante para fechar. Aqui a pessoa já gostou de um imóvel específico e quer saber tudo antes de falar. Cada bloco foi pensado para tirar uma dúvida e empurrar para o contato.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="loc">Topo</div>
+        <div class="body"><b>Galeria de fotos</b>
+          <p>Uma foto grande com miniaturas ao lado. Mostra o imóvel por vários ângulos.</p>
+          <p class="why"><em>Por quê:</em> imóvel se vende pelo olho. Foto boa e em quantidade é o que faz a pessoa se imaginar morando ali.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Abaixo</div>
+        <div class="body"><b>Título, preço e ficha</b>
+          <p>Endereço, preço em destaque e a ficha rápida: área, quartos, suítes, banheiros e vagas em pílulas com ícone.</p>
+          <p class="why"><em>Por quê:</em> são as informações que a pessoa procura primeiro. Deixá-las grandes e logo no começo evita que ela role atrás do básico.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Meio</div>
+        <div class="body"><b>Descrição, características e valores</b>
+          <p>Texto sobre o imóvel, lista de características (lazer, andar, sol) e uma tabela com valor, condomínio e IPTU.</p>
+          <p class="why"><em>Por quê:</em> mostrar condomínio e IPTU dá transparência. A pessoa já sabe o custo real e chega na conversa sem susto depois.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Lateral · fixa</div>
+        <div class="body"><b>Cartão "Falar com a corretora"</b>
+          <p>Botão de WhatsApp que já abre a conversa com a mensagem pronta ("Tenho interesse no imóvel LEO-1001..."), mais um formulário curto. O código do imóvel fica visível.</p>
+          <p class="why"><em>Por quê:</em> tira todo o atrito do contato. Vocês já recebem a mensagem sabendo qual imóvel, sem ficar perguntando "qual era mesmo?".</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Fim</div>
+        <div class="body"><b>Imóveis relacionados</b>
+          <p>No fim, três imóveis parecidos, do mesmo bairro.</p>
+          <p class="why"><em>Por quê:</em> se este não for o ideal, a pessoa continua no site vendo outros, em vez de voltar para o Google.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>08</span></div>
+  </div>
+</section>
+
+<!-- ============ 09 — QUEM SOMOS + SERVIÇOS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">09 · Confiança</div>
+    </div>
+    <div class="eyebrow">Quem somos e Serviços</div>
+    <h2 class="title">As páginas que vendem<br>confiança, não imóvel</h2>
+    <p class="section-intro">Antes de gastar dinheiro, a pessoa quer saber com quem está falando. Estas duas páginas existem para isso: mostrar experiência e deixar claro o que a imobiliária resolve.</p>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="num">A</div>
+        <h3>Quem somos</h3>
+        <p style="margin-bottom:10px;">História da imobiliária, os 15 anos de região e três valores: conhecimento de bairro, cuidado com o cliente e transparência.</p>
+        <p class="why" style="color:#3a3a3a;font-size:12px;"><b style="color:var(--dark);">Por quê:</b> imóvel é decisão grande. As pessoas fecham com quem confiam. Esta página transforma "uma imobiliária qualquer" em "gente da região que responde pelo que faz".</p>
+      </div>
+      <div class="card">
+        <div class="num">B</div>
+        <h3>Serviços</h3>
+        <p style="margin-bottom:10px;">Os três serviços explicados com calma, mais um passo a passo de como o trabalho acontece: conversa e avaliação, anúncio e negociação, fechamento e acompanhamento.</p>
+        <p class="why" style="color:#3a3a3a;font-size:12px;"><b style="color:var(--dark);">Por quê:</b> mostrar o processo passa segurança. A pessoa entende que não vai ficar perdida e sabe o que esperar em cada etapa.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="eyebrow">Detalhe de copy</div>
+      <p class="note" style="margin-top:0;">Os textos foram escritos no tom de imobiliária próxima e humana: "fala com quem mora e responde pela região", "nada de call center". É de propósito, esse é o diferencial que mais importa, e a página de serviços deixa isso explícito, sem prometer milagre.</p>
+    </div>
+
+    <div class="quote">Cada serviço foi descrito do jeito que o cliente entende na hora. A administração de condomínios, por exemplo, fala em "cobrança e recuperação de parcelas em atraso, trazendo a inadimplência de volta ao controle", direto ao que o síndico procura.</div>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>09</span></div>
+  </div>
+</section>
+
+<!-- ============ 10 — CONTATO ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">10 · Contato</div>
+    </div>
+    <div class="eyebrow">Página de contato</div>
+    <h2 class="title">O ponto de chegada<br>de tudo no site</h2>
+    <p class="section-intro">Todos os caminhos do site levam para cá. A página foi montada para a pessoa escolher o canal que prefere, sem obrigar ninguém a preencher formulário.</p>
+
+    <div class="anat">
+      <div class="arow">
+        <div class="loc">Esquerda</div>
+        <div class="body"><b>Canais diretos</b>
+          <p>WhatsApp, telefone e e-mail, um embaixo do outro, com a promessa de "resposta no mesmo dia útil".</p>
+          <p class="why"><em>Por quê:</em> cada pessoa tem seu canal preferido. Oferecer os três, com o WhatsApp em primeiro, respeita isso e aumenta a chance de contato.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Direita</div>
+        <div class="body"><b>Formulário de mensagem</b>
+          <p>Nome, telefone, um campo "Como podemos ajudar?" (comprar, alugar, vender, administração...) e a mensagem.</p>
+          <p class="why"><em>Por quê:</em> quem prefere não ligar deixa o recado. O campo de assunto já organiza o pedido e antecipa o que a pessoa quer.</p>
+        </div>
+      </div>
+      <div class="arow">
+        <div class="loc">Abaixo</div>
+        <div class="body"><b>Mapa da região</b>
+          <p>Um mapa do Google mostrando a área de atuação.</p>
+          <p class="why"><em>Por quê:</em> reforça que a imobiliária é dali. Localização no mapa dá concretude e confiança a quem é da região.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">No site-demo, o formulário mostra uma mensagem de "recebemos seu contato" mas ainda não envia para lugar nenhum (o aviso está escrito na tela). Quando o site for ao ar, ele passa a entregar a mensagem no e-mail ou WhatsApp de vocês.</div>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>10</span></div>
+  </div>
+</section>
+
+<!-- ============ 11 — DETALHES INVISÍVEIS ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">11 · Por baixo dos panos</div>
+    </div>
+    <div class="eyebrow">O que não se vê, mas conta</div>
+    <h2 class="title">Detalhes que ninguém repara,<br>mas sente</h2>
+    <p class="section-intro">Algumas decisões não aparecem numa foto, mas mudam a experiência. São o tipo de coisa que faz o site parecer "profissional de verdade".</p>
+
+    <div class="grid2" style="gap:0 40px;">
+      <div>
+        <div class="feat"><span class="dot">✓</span><div><b>Feito para o celular</b><span>A maioria acessa do telefone. Tudo se reorganiza para caber bem na tela pequena.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Abre rápido</b><span>Site leve, sem peso desnecessário. Abre em segundos mesmo em internet ruim.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Pronto para o Google</b><span>Títulos e descrições de cada página preparados para aparecer nas buscas da região.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Favoritos que ficam salvos</b><span>O coração nos imóveis guarda a seleção no aparelho da pessoa, para ela voltar depois.</span></div></div>
+      </div>
+      <div>
+        <div class="feat"><span class="dot">✓</span><div><b>Galerias que deslizam no dedo</b><span>Nas fotos dos cards dá para arrastar como num app, natural no celular.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Animações suaves ao rolar</b><span>As seções surgem com leveza conforme a pessoa desce. Dá sensação de cuidado.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Menus e botões com acabamento</b><span>Listas de seleção desenhadas à mão, não as cinzas padrão do navegador.</span></div></div>
+        <div class="feat"><span class="dot">✓</span><div><b>Ícones desenhados, sem emoji</b><span>Cada serviço e detalhe tem um ícone de linha fino, no estilo do site.</span></div></div>
+      </div>
+    </div>
+
+    <p class="note">Nada disso aparece numa lista de "funções", mas é o conjunto dessas escolhas que separa um site que parece feito por profissional de um site de modelo pronto. É o acabamento.</p>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site</span><span>11</span></div>
+  </div>
+</section>
+
+<!-- ============ 12 — DECISÕES DE DESIGN ============ -->
+<section class="page">
+  <div class="pad">
+    <div class="phead">
+      <div class="logo-mark"><div class="logo-txt"><b>Leopoldina</b> <span>Imóveis</span></div></div>
+      <div class="pnum">12 · O porquê do visual</div>
+    </div>
+    <div class="eyebrow">Por que o site tem essa cara</div>
+    <h2 class="title">Sóbrio de propósito</h2>
+    <p class="section-intro">O visual não é gosto aleatório. Cada escolha de cor, letra e espaço serve para passar uma mensagem: seriedade, confiança e calma.</p>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="num">1</div>
+        <h3>Paleta bege e preto</h3>
+        <p>Tons neutros e quentes em vez de cores berrantes. Passam sofisticação e deixam a foto do imóvel ser a estrela.</p>
+      </div>
+      <div class="card">
+        <div class="num">2</div>
+        <h3>Letra forte e bastante respiro</h3>
+        <p>Títulos grandes e muito espaço em branco. O olho descansa, o site não parece amador nem poluído.</p>
+      </div>
+      <div class="card">
+        <div class="num">3</div>
+        <h3>Humano, não robô</h3>
+        <p>Nenhum chatbot que enrola. Todo caminho leva a falar com gente, o jeito de atender que a imobiliária quer passar.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;">
+      <div class="eyebrow">A regra que guiou tudo</div>
+      <p class="note" style="margin-top:0;">Cada elemento precisa ter um motivo para estar ali. Se não ajuda a pessoa a achar imóvel ou a falar com vocês, não entra. Por isso o site é enxuto: é uma vitrine que trabalha, não um catálogo cheio de coisa que ninguém usa.</p>
+    </div>
+
+    <div class="quote">O resultado é um site que parece feito sob medida: bonito, leve e fácil de usar. Cada tela tem só o necessário para a pessoa achar o imóvel e chegar até vocês.</div>
+
+    <div class="foot-note"><span>Leopoldina Imóveis · Guia do site · Feito por Felipe</span><span>12</span></div>
+  </div>
+</section>
+
+</body>
+</html>
